@@ -10,7 +10,7 @@ if st.button("Home", icon=":material/arrow_back:", type="tertiary"):
     st.switch_page("Home.py")
 st.title("SUS Score Calculator")
 
-st.write("## 1. Downlad and fill the template")
+st.write("##### 1. Downlad and fill the template")
 with open("templates/template_sus.xlsx", "rb") as f:
         file_bytes = f.read()
 
@@ -22,12 +22,10 @@ st.download_button(
     width="content"
 )
 
-st.write("## 2. Drop your SUS Excel file")
+st.write("##### 2. Drop your SUS Excel file")
 uploaded_file = st.file_uploader("Choisir un fichier Excel", type=["xlsx", "xls"], label_visibility="collapsed")
 
 if uploaded_file is not None:
-
-    st.write("## 3. Results")
 
     # Lecture des données
     df_raw = pd.read_excel(uploaded_file)
@@ -82,7 +80,9 @@ if uploaded_file is not None:
     grade = to_grade(score)
     acceptability = to_acceptability(score)
 
-    st.write("### Stats")
+    st.divider()
+
+    st.write("##### Stats")
 
     col1, col2, col3 = st.columns([3, 3, 6])
     with col1:
@@ -92,7 +92,7 @@ if uploaded_file is not None:
     with col3:
         st.metric("Acceptability", acceptability, border=True)
 
-    st.write("### Visuals")
+    st.write("##### Visuals")
 
     # 2. Create the Altair Bar Chart (your original plot)
     bar_chart = alt.Chart(df_processed).mark_bar().encode(
@@ -112,7 +112,7 @@ if uploaded_file is not None:
 
     st.altair_chart(plot)
 
-    st.write("### Data")
+    st.write("##### Data")
 
     data_type = st.segmented_control("Type", ["Raw", "Processed"], label_visibility="collapsed", default="Raw")
 
