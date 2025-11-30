@@ -1,4 +1,4 @@
-# ux-questionnaires
+# uxscores
 
 A Streamlit application to compute, visualize, and export key UX questionnaire scores such as **SUS (System Usability Scale)**, **SUS item breakdowns**, and related computed metrics.  
 The app allows users to upload raw data, automatically compute results, and explore them across different views.
@@ -16,23 +16,23 @@ The app allows users to upload raw data, automatically compute results, and expl
 - Export results
 - Simple and intuitive UX
 
-## Starter commands
+## Starter Commands
 
 ### Mac
 
-python3 -m venv .venv
-source .venv/bin/activate
-which pip
-pip install -r requirements.txt
-streamlit run Home.py
+- python3 -m venv .venv
+- source .venv/bin/activate
+- which pip
+- pip install -r requirements.txt
+- streamlit run Home.py
 
 ### Windows
 
-python3 -m venv .venv
-.\.venv\Scripts\activate.bat
-where pip
-pip install -r requirements.txt
-streamlit run Home.py
+- python3 -m venv .venv
+- .\.venv\Scripts\activate.bat
+- where pip
+- pip install -r requirements.txt
+- streamlit run Home.py
 
 ## Licence
 
