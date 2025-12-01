@@ -1,11 +1,10 @@
 import streamlit as st
 import pandas as pd
-import openpyxl as pxl
+import openpyxl
 import altair as alt
 import pandas as pd
-import numpy as np
-from scipy import stats
-#from plotnine import ggplot, aes, geom_col, labs
+
+from scripts.sus import sus
 
 st.set_page_config("SUS", initial_sidebar_state="collapsed")
 
@@ -33,127 +32,29 @@ if uploaded_file is not None:
     # Lecture des données
     df_raw = pd.read_excel(uploaded_file)
 
-    df = df_raw.copy()
-    to_remove = [col for col in df.columns if not col.startswith("Q")]
-    to_keep = [col for col in df.columns if col.startswith("Q")]
-
-    model = [f"Q{i}" for i in range(1, 11)]
-
-    if to_keep != model:
-        st.error(f"The uploaded file does not conform to the SUS template. Please ensure that the question columns are named exactly as: Q1 to Q10.")
-        st.stop()
-
-    df = df.drop(columns=to_remove)
-
-    # Apply SUS scoring rules
-    for col in df.columns:
-        if col in ["Q1", "Q3", "Q5", "Q7", "Q9"]:
-            # Odd-numbered items
-            df[col] = df[col] - 1
-        elif col in ["Q2", "Q4", "Q6", "Q8", "Q10"]:
-            # Even-numbered items
-            df[col] = 5 - df[col]
-
-    # Sum across the 10 items
-    df["UserScore"] = df.sum(axis=1) * 2.5
-    col = df.pop("UserScore")   # remove the column
-    df.insert(0, "UserScore", col)  # reinsert at position 0
-
-    def as_grade(s):
-        if s <= 60:
-            return 'F'
-        elif s > 60 and s <= 70:
-            return 'D'
-        elif s > 70 and s <= 80:
-            return 'C'
-        elif s > 80 and s <= 90:
-            return 'B'
-        elif s > 90 and s <= 100:
-            return 'A'
-
-    df['Grades'] = df['UserScore'].apply(as_grade)
-    col = df.pop("Grades")   # remove the column
-    df.insert(0, "Grades", col)  # reinsert at position 0
-
-    def as_acceptability(s):
-        if s <= 50:
-            return "NAC"   # Not Acceptable
-        elif s <= 62:
-            return "MAL"   # Marginal Low
-        elif s <= 70:
-            return "MAH"   # Marginal High
-        else:
-            return "ACP"   # Acceptable
-
-    df['Acceptability'] = df['UserScore'].apply(as_acceptability)
-    col = df.pop("Acceptability")   # remove the column
-    df.insert(0, "Acceptability", col)  # reinsert at position 0
-
-    score = round(df["UserScore"].mean())
-    grade = as_grade(score)
-    acceptability = as_acceptability(score)
-
-    # 1. Extract the SUS scores from the DataFrame
-    scores = df["UserScore"].dropna()
-
-    # 2. Sample size
-    n = len(scores)
-
-    # 3. Sample mean
-    sus_mean = score
-
-    # 4. Sample standard deviation (unbiased, ddof=1)
-    sus_sd = scores.std(ddof=1)
-
-    # 5. Standard error of the mean
-    sus_se = sus_sd / np.sqrt(n)
-
-    # 6. Degrees of freedom
-    dfree = n - 1
-
-    # 7. t critical value for 95% CI (two-tailed)
-    alpha = 0.05
-    t_crit = stats.t.ppf(1 - alpha/2, dfree)
-    
-    # 8. Margin of error
-    margin = t_crit * sus_se
-
-    # 9. Confidence interval bounds
-    ci_low = round(sus_mean - margin)
-    ci_low_grade = as_grade(ci_low)
-    ci_low_acceptability = as_acceptability(ci_low)
-
-    ci_high = round(sus_mean + margin)
-    ci_high_grade = as_grade(ci_high)
-    ci_high_acceptability = as_acceptability(ci_high)
+    res = sus(df_raw)
 
     st.subheader("Score")
 
-    if n < 8:
-        st.warning("Sample size is less than 8. The CI calculation may not be reliable.")
-
-    if score < 0 or score > 100:
-        st.error("The calculated SUS score is out of bounds (0-100). Please check your data.")
-
     col1, col2 = st.columns(2)
     with col1:
-        st.metric("Score", score, border=True)
+        st.metric("Score", round(res.mean), border=True)
     with col2:
-        st.metric("Score & CI (95%)", f"{score} [{ci_low};{ci_high}]", border=False)
+        st.metric("Score & CI (95%)", f"{round(res.mean)} [{round(res.ci_low)};{round(res.ci_high)}]", border=False)
 
-    bar_chart = alt.Chart(df).mark_bar().encode(
+    bar_chart = alt.Chart(res.df).mark_bar().encode(
         alt.X("UserScore:Q").bin(maxbins=20).scale(domain=[0, 100]),
         alt.Y('count()'),
         alt.Color("UserScore:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
     )
 
-    mean_line = alt.Chart(pd.DataFrame({'mean_score': [score]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
+    mean_line = alt.Chart(pd.DataFrame({'mean_score': [res.mean]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
         x='mean_score:Q',
         tooltip=[alt.Tooltip('mean_score', title=f'Mean Score')]
     )
 
     mean_text = (
-        alt.Chart(pd.DataFrame({'mean_score': [score]}))
+        alt.Chart(pd.DataFrame({'mean_score': [res.mean]}))
         .mark_text(align='left', dx=8, color="red")
         .encode(
             x='mean_score:Q',
@@ -169,13 +70,13 @@ if uploaded_file is not None:
     st.subheader("Grade")
     col1, col2 = st.columns(2)
     with col1:
-        st.metric("Grade", grade, border=True)
+        st.metric("Grade", res.grade, border=True)
     with col2:
-        st.metric("Grade & CI (95%) as Grade", f"{grade} [{ci_low_grade};{ci_high_grade}]", border=False)
+        st.metric("Grade & CI (95%) as Grade", f"{res.grade} [{res.ci_low_grade};{res.ci_high_grade}]", border=False)
 
     # === 1. Base chart: common encoding ===
     base = (
-        alt.Chart(df)
+        alt.Chart(res.df)
         .encode(
             x='count()',
             y='Grades:N'
@@ -198,7 +99,7 @@ if uploaded_file is not None:
         alt.Chart()  # no data needed for a pure datum-based rule
         .mark_rule(color="red", size=2, strokeDash=[3, 3])
         .encode(
-            y=alt.Y(datum=grade, type="nominal")   # grade = "D"
+            y=alt.Y(datum=res.grade, type="nominal")   # grade = "D"
         )
     )
 
@@ -206,7 +107,7 @@ if uploaded_file is not None:
         alt.Chart()
         .mark_text(align='left', dy=-8, color="red")
         .encode(
-            y=alt.Y(datum=grade, type="nominal"),
+            y=alt.Y(datum=res.grade, type="nominal"),
             x=alt.Y(datum=0.5, type="quantitative"),
             text=alt.value("MEAN")
         )
@@ -220,13 +121,13 @@ if uploaded_file is not None:
     st.subheader("Acceptability")
     col1, col2 = st.columns(2)
     with col1:
-        st.metric("Acceptability", acceptability, border=True)
+        st.metric("Acceptability", res.acceptability, border=True)
     with col2:
-        st.metric("Acceptability & CI (95%) as Acceptability", f"{acceptability} [{ci_low_acceptability};{ci_high_acceptability}]", border=False)
+        st.metric("Acceptability & CI (95%) as Acceptability", f"{res.acceptability} [{res.ci_low_acceptability};{res.ci_high_acceptability}]", border=False)
 
     # === 1. Base chart: common encoding ===
     base = (
-        alt.Chart(df)
+        alt.Chart(res.df)
         .encode(
             x='count()',
             y='Acceptability:N'
@@ -249,7 +150,7 @@ if uploaded_file is not None:
         alt.Chart()  # no data needed for a pure datum-based rule
         .mark_rule(color="red", size=2, strokeDash=[3, 3])
         .encode(
-            y=alt.Y(datum=acceptability, type="nominal")   # grade = "D"
+            y=alt.Y(datum=res.acceptability, type="nominal")   # grade = "D"
         )
     )
 
@@ -257,7 +158,7 @@ if uploaded_file is not None:
         alt.Chart()
         .mark_text(align='left', dy=-8, color="red")
         .encode(
-            y=alt.Y(datum=acceptability, type="nominal"),
+            y=alt.Y(datum=res.acceptability, type="nominal"),
             x=alt.Y(datum=0.5, type="quantitative"),
             text=alt.value("MEAN")
         )
@@ -268,7 +169,7 @@ if uploaded_file is not None:
 
     st.altair_chart(plot)
 
-    st.caption("NAC: Not Acceptable, MAL: Marginal Low, MAH: Marginal High, ACP: Acceptable.")
+    st.caption("ACP: Acceptable, MAH: Marginal High, MAL: Marginal Low, NAC: Not Acceptable.")
 
     st.subheader("Data")
 
@@ -276,7 +177,7 @@ if uploaded_file is not None:
     if data_type == "Raw":
         st.write(df_raw)
     elif data_type == "Processed":
-        st.write(df)
+        st.write(res.df)
 
 st.divider()
 
@@ -287,11 +188,3 @@ with st.expander("About SUS"):
 
     # Display it in Streamlit
     st.markdown(md_text)
-
-    #     p = (
-    #         ggplot(plot_df, aes(x="colonne", y="moyenne")) +
-    #         geom_col() +
-    #         labs(title="Moyenne de la colonne", x="", y="Moyenne")
-    #     )
-
-    #     st.pyplot(p.draw())

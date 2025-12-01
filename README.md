@@ -25,6 +25,7 @@ The app allows users to upload raw data, automatically compute results, and expl
 - which pip
 - pip install -r requirements.txt
 - streamlit run Home.py
+- pip freeze > requirements.txt
 
 ### Windows
 
@@ -33,6 +34,7 @@ The app allows users to upload raw data, automatically compute results, and expl
 - where pip
 - pip install -r requirements.txt
 - streamlit run Home.py
+- pip freeze > requirements.txt
 
 ## Licence
 
