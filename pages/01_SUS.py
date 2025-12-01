@@ -83,10 +83,6 @@ if uploaded_file is not None:
     grade = as_grade(score)
     acceptability = as_acceptability(score)
 
-    st.divider()
-
-    st.subheader("Descriptives")
-
     # 1. Extract the SUS scores from the DataFrame
     scores = df_processed["UserScore"].dropna()
 
@@ -123,44 +119,146 @@ if uploaded_file is not None:
 
     st.subheader("Score")
 
+    if n < 8:
+        st.warning("Sample size is less than 8. The CI calculation may not be reliable.")
+
+    if score < 0 or score > 100:
+        st.error("The calculated SUS score is out of bounds (0-100). Please check your data.")
+
     col1, col2 = st.columns(2)
     with col1:
         st.metric("Score", score, border=True)
     with col2:
-        st.metric("Score & CI (95%)", f"{score} [{ci_low};{ci_high}]", border=True)
+        st.metric("Score & CI (95%)", f"{score} [{ci_low};{ci_high}]", border=False)
+
+    bar_chart = alt.Chart(df_processed).mark_bar().encode(
+        alt.X("UserScore:Q").bin(maxbins=20).scale(domain=[0, 100]),
+        alt.Y('count()'),
+        alt.Color("UserScore:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
+    )
+
+    mean_line = alt.Chart(pd.DataFrame({'mean_score': [score]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
+        x='mean_score:Q',
+        tooltip=[alt.Tooltip('mean_score', title=f'Mean Score')]
+    )
+
+    mean_text = (
+        alt.Chart(pd.DataFrame({'mean_score': [score]}))
+        .mark_text(align='left', dx=8, color="red")
+        .encode(
+            x='mean_score:Q',
+            y=alt.Y(datum=0.5, type="quantitative"),
+            text=alt.value("MEAN")
+        )
+    )
+
+    plot = (bar_chart + mean_line + mean_text).properties(title="User Scores Distribution & Mean")
+
+    st.altair_chart(plot)
 
     st.subheader("Grade")
     col1, col2 = st.columns(2)
     with col1:
         st.metric("Grade", grade, border=True)
     with col2:
-        st.metric("Grade & CI (95%) as Grade", f"{grade} [{ci_low_grade};{ci_high_grade}]", border=True)
+        st.metric("Grade & CI (95%) as Grade", f"{grade} [{ci_low_grade};{ci_high_grade}]", border=False)
+
+    # === 1. Base chart: common encoding ===
+    base = (
+        alt.Chart(df_processed)
+        .encode(
+            x='count()',
+            y='Grades:N'
+        )
+    )
+
+    # === 2. Bar chart showing counts per grade ===
+    bars = base.mark_bar().encode(
+        alt.Color("Grades:N").scale(scheme="redyellowgreen", reverse=True).legend(None)
+    )
+
+    # === 3. Labels next to the bars ===
+    labels = base.mark_text(
+        align='left',
+        dx=2
+    )
+
+    # === 4. Vertical rule at the mean grade ===
+    mean_rule = (
+        alt.Chart()  # no data needed for a pure datum-based rule
+        .mark_rule(color="red", size=2, strokeDash=[3, 3])
+        .encode(
+            y=alt.Y(datum=grade, type="nominal")   # grade = "D"
+        )
+    )
+
+    mean_text = (
+        alt.Chart()
+        .mark_text(align='left', dy=-8, color="red")
+        .encode(
+            y=alt.Y(datum=grade, type="nominal"),
+            x=alt.Y(datum=0.5, type="quantitative"),
+            text=alt.value("MEAN")
+        )
+    )
+
+    # === 5. Combine all layers into one plot ===
+    plot = (bars + labels + mean_rule + mean_text).properties(title="Grades Distribution & Mean")
+
+    st.altair_chart(plot)
 
     st.subheader("Acceptability")
     col1, col2 = st.columns(2)
     with col1:
         st.metric("Acceptability", acceptability, border=True)
     with col2:
-        st.metric("Acceptability & CI (95%) as Acceptability", f"{acceptability} [{ci_low_acceptability};{ci_high_acceptability}]", border=True)
+        st.metric("Acceptability & CI (95%) as Acceptability", f"{acceptability} [{ci_low_acceptability};{ci_high_acceptability}]", border=False)
 
-    st.caption("NAC: Not Acceptable, MAL: Marginal Low, MAH: Marginal High, ACP: Acceptable.")
-
-    st.subheader("Visuals")
-
-    bar_chart = alt.Chart(df_processed).mark_bar().encode(
-        alt.X("UserScore:Q").bin(maxbins=20).scale(domain=[0, 100]),
-        alt.Y('count()'),
-        alt.Color("UserScore:Q").bin(maxbins=20).scale(scheme="darkmulti").legend(None)
+    # === 1. Base chart: common encoding ===
+    base = (
+        alt.Chart(df_processed)
+        .encode(
+            x='count()',
+            y='Acceptability:N'
+        )
     )
 
-    mean_line = alt.Chart(pd.DataFrame({'mean_score': [score]})).mark_rule(color='red', strokeWidth=3).encode(
-        x='mean_score:Q',
-        tooltip=[alt.Tooltip('mean_score', title=f'Mean Score')]
+    # === 2. Bar chart showing counts per grade ===
+    bars = base.mark_bar().encode(
+        alt.Color("Acceptability:N").scale(scheme="redyellowgreen", reverse=True).legend(None)
     )
 
-    plot = (bar_chart + mean_line).interactive()
+    # === 3. Labels next to the bars ===
+    labels = base.mark_text(
+        align='left',
+        dx=2
+    )
+
+    # === 4. Vertical rule at the mean grade ===
+    mean_rule = (
+        alt.Chart()  # no data needed for a pure datum-based rule
+        .mark_rule(color="red", size=2, strokeDash=[3, 3])
+        .encode(
+            y=alt.Y(datum=acceptability, type="nominal")   # grade = "D"
+        )
+    )
+
+    mean_text = (
+        alt.Chart()
+        .mark_text(align='left', dy=-8, color="red")
+        .encode(
+            y=alt.Y(datum=acceptability, type="nominal"),
+            x=alt.Y(datum=0.5, type="quantitative"),
+            text=alt.value("MEAN")
+        )
+    )
+
+    # === 5. Combine all layers into one plot ===
+    plot = (bars + labels + mean_rule + mean_text).properties(title="Acceptability Distribution & Mean")
 
     st.altair_chart(plot)
+
+    st.caption("NAC: Not Acceptable, MAL: Marginal Low, MAH: Marginal High, ACP: Acceptable.")
 
     st.subheader("Data")
 
