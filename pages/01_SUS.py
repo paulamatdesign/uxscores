@@ -13,7 +13,7 @@ if st.button("Home", icon=":material/arrow_back:", type="tertiary"):
     st.switch_page("Home.py")
 st.title("SUS Score Calculator")
 
-st.write("##### 1. Downlad and fill the template")
+st.subheader("1. Downlad and fill the template")
 with open("templates/template_sus.xlsx", "rb") as f:
         file_bytes = f.read()
 
@@ -25,7 +25,7 @@ st.download_button(
     width="content"
 )
 
-st.write("##### 2. Drop your SUS Excel file")
+st.subheader("2. Drop your SUS Excel file")
 uploaded_file = st.file_uploader("Choisir un fichier Excel", type=["xlsx", "xls"], label_visibility="collapsed")
 
 if uploaded_file is not None:
@@ -49,7 +49,7 @@ if uploaded_file is not None:
     col = df_processed.pop("UserScore")   # remove the column
     df_processed.insert(0, "UserScore", col)  # reinsert at position 0
 
-    def to_grade(s):
+    def as_grade(s):
         if s <= 60:
             return 'F'
         elif s > 60 and s <= 70:
@@ -61,31 +61,31 @@ if uploaded_file is not None:
         elif s > 90 and s <= 100:
             return 'A'
 
-    df_processed['Grades'] = df_processed['UserScore'].apply(to_grade)
+    df_processed['Grades'] = df_processed['UserScore'].apply(as_grade)
     col = df_processed.pop("Grades")   # remove the column
     df_processed.insert(0, "Grades", col)  # reinsert at position 0
 
-    def to_acceptability(s):
+    def as_acceptability(s):
         if s <= 50:
-            return 'Not Acceptable'
-        elif s > 50 and s <= 62:
-            return 'Marginal Low'
-        elif s > 62 and s <= 70:
-            return 'Marginal High'
-        elif s > 70 and s <= 100:
-            return 'Acceptable'
+            return "NAC"   # Not Acceptable
+        elif s <= 62:
+            return "MAL"   # Marginal Low
+        elif s <= 70:
+            return "MAH"   # Marginal High
+        else:
+            return "ACP"   # Acceptable
 
-    df_processed['Acceptability'] = df_processed['UserScore'].apply(to_acceptability)
+    df_processed['Acceptability'] = df_processed['UserScore'].apply(as_acceptability)
     col = df_processed.pop("Acceptability")   # remove the column
     df_processed.insert(0, "Acceptability", col)  # reinsert at position 0
 
     score = round(df_processed["UserScore"].mean())
-    grade = to_grade(score)
-    acceptability = to_acceptability(score)
+    grade = as_grade(score)
+    acceptability = as_acceptability(score)
 
     st.divider()
 
-    st.write("##### Stats")
+    st.subheader("Descriptives")
 
     # 1. Extract the SUS scores from the DataFrame
     scores = df_processed["UserScore"].dropna()
@@ -114,25 +114,43 @@ if uploaded_file is not None:
 
     # 9. Confidence interval bounds
     ci_low = round(sus_mean - margin)
+    ci_low_grade = as_grade(ci_low)
+    ci_low_acceptability = as_acceptability(ci_low)
+
     ci_high = round(sus_mean + margin)
+    ci_high_grade = as_grade(ci_high)
+    ci_high_acceptability = as_acceptability(ci_high)
+
+    st.subheader("Score")
 
     col1, col2 = st.columns(2)
     with col1:
         st.metric("Score", score, border=True)
     with col2:
-        st.metric("CI (95%)", f"{ci_low};{ci_high}", border=True)
+        st.metric("Score & CI (95%)", f"{score} [{ci_low};{ci_high}]", border=True)
+
+    st.subheader("Grade")
     col1, col2 = st.columns(2)
     with col1:
         st.metric("Grade", grade, border=True)
     with col2:
-        st.metric("Acceptability", acceptability, border=True)
+        st.metric("Grade & CI (95%) as Grade", f"{grade} [{ci_low_grade};{ci_high_grade}]", border=True)
 
-    st.write("##### Visuals")
+    st.subheader("Acceptability")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.metric("Acceptability", acceptability, border=True)
+    with col2:
+        st.metric("Acceptability & CI (95%) as Acceptability", f"{acceptability} [{ci_low_acceptability};{ci_high_acceptability}]", border=True)
+
+    st.caption("NAC: Not Acceptable, MAL: Marginal Low, MAH: Marginal High, ACP: Acceptable.")
+
+    st.subheader("Visuals")
 
     bar_chart = alt.Chart(df_processed).mark_bar().encode(
         alt.X("UserScore:Q").bin(maxbins=20).scale(domain=[0, 100]),
         alt.Y('count()'),
-        alt.Color("UserScore:Q").bin(maxbins=20).scale(scheme="darkmulti")
+        alt.Color("UserScore:Q").bin(maxbins=20).scale(scheme="darkmulti").legend(None)
     )
 
     mean_line = alt.Chart(pd.DataFrame({'mean_score': [score]})).mark_rule(color='red', strokeWidth=3).encode(
@@ -140,25 +158,27 @@ if uploaded_file is not None:
         tooltip=[alt.Tooltip('mean_score', title=f'Mean Score')]
     )
 
-    # confidence_interval_band = alt.Chart(pd.DataFrame({'ci_lower': [ci_low], 'ci_higher': [ci_high]})).mark_rect(opacity=0.3, color='red').encode(
-    #     x='ci_lower:Q',
-    #     x2='ci_higher:Q', # &lt;--- Corrected this to 'ci_higher:Q'
-    #     y=alt.value(0),
-    #     y2=alt.value(100) # Ensure 10 is indeed the maximum count on your y-axis, or derive it dynamically
-    # )
-
     plot = (bar_chart + mean_line).interactive()
 
     st.altair_chart(plot)
 
-    st.write("##### Data")
+    st.subheader("Data")
 
     data_type = st.segmented_control("Type", ["Raw", "Processed"], label_visibility="collapsed", default="Raw")
-
     if data_type == "Raw":
         st.write(df_raw)
     elif data_type == "Processed":
         st.write(df_processed)
+
+st.divider()
+
+with st.expander("About SUS"):
+    # Read the markdown file
+    with open("descriptions/sus.md", "r", encoding="utf-8") as f:
+        md_text = f.read()
+
+    # Display it in Streamlit
+    st.markdown(md_text)
 
     #     p = (
     #         ggplot(plot_df, aes(x="colonne", y="moyenne")) +
