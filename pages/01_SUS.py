@@ -34,12 +34,12 @@ if uploaded_file is not None:
 
     res = sus(df_raw)
 
-    st.subheader("Score")
+    st.subheader("Mean Score")
 
     col1, col2 = st.columns(2)
     with col1:
-        st.metric("Score", round(res.mean), border=True)
-        st.write(f"Score & CI (95%): {round(res.mean)} [{round(res.ci_low)};{round(res.ci_high)}]")
+        st.metric("Mean", round(res.mean), border=True)
+        st.write(f"Mean & CI (95%): {round(res.mean)} [{round(res.ci_low)};{round(res.ci_high)}]")
     with col2:
         bar_chart = alt.Chart(res.df).mark_bar().encode(
             alt.X("UserScore:Q").bin(maxbins=20).scale(domain=[0, 100]),
