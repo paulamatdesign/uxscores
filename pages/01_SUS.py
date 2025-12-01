@@ -8,11 +8,25 @@ from scripts.sus import sus
 
 st.set_page_config("SUS", initial_sidebar_state="collapsed")
 
+st.html(
+    """
+        <style>
+            h2 {
+                margin-top: 1.5rem;
+                font-weight: 400 !important;
+                color: grey !important;
+                font-size: medium !important;
+                text-transform: uppercase;
+                letter-spacing: normal !important;
+            }
+    """
+)
+
 if st.button("Home", icon=":material/arrow_back:", type="tertiary"):
     st.switch_page("Home.py")
 st.title("SUS Score Calculator")
 
-st.subheader("1. Downlad and fill the template")
+st.header("1. Downlad and fill the template")
 with open("templates/template_sus.xlsx", "rb") as f:
         file_bytes = f.read()
 
@@ -24,7 +38,7 @@ st.download_button(
     width="content"
 )
 
-st.subheader("2. Drop your SUS Excel file")
+st.header("2. Drop your SUS Excel file")
 uploaded_file = st.file_uploader("Choisir un fichier Excel", type=["xlsx", "xls"], label_visibility="collapsed")
 
 if uploaded_file is not None:
@@ -34,7 +48,7 @@ if uploaded_file is not None:
 
     res = sus(df_raw)
 
-    st.subheader("Mean Score")
+    st.header("Mean Score")
 
     col1, col2 = st.columns(2)
     with col1:
@@ -66,7 +80,7 @@ if uploaded_file is not None:
 
         st.altair_chart(plot)
 
-    st.subheader("Grade")
+    st.header("Grade")
     col1, col2 = st.columns(2)
     with col1:
         st.metric("Grade", res.grade, border=True)
@@ -116,7 +130,7 @@ if uploaded_file is not None:
 
         st.altair_chart(plot)
 
-    st.subheader("Acceptability")
+    st.header("Acceptability")
     col1, col2 = st.columns(2)
     with col1:
         st.metric("Acceptability", res.acceptability, border=True)
