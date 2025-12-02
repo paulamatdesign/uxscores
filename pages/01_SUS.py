@@ -122,7 +122,6 @@ if uploaded_file is not None:
     with col1:
         st.metric("Acceptability", res.acceptability, border=True)
         st.write(f"Acceptability & CI (95%) as Acceptability: {res.acceptability} [{res.ci_acceptability[0]};{res.ci_acceptability[1]}]")
-        st.caption("ACP: Acceptable, MAH: Marginal High, MAL: Marginal Low, NAC: Not Acceptable.")
     with col2:
         # === 1. Base chart: common encoding ===
         base = (

@@ -46,20 +46,27 @@ Note: didn’t find official formula to compute learnability and usability. I ap
 
 ## Interpretation
 
-### Interpretation of SUS scores (grades)
+### SUS Grade
 
-- 0-60: F
-- 61-70: D
-- 71-80: C
-- 81-90: B
-- 91-100: A
+- 0–25.0: F  
+- 25.1–51.6: F  
+- 51.7–62.6: D  
+- 62.7–64.9: C−  
+- 65.0–71.0: C  
+- 71.1–72.5: C+  
+- 72.6–74.0: B−  
+- 74.1–77.1: B  
+- 77.2–78.8: B+  
+- 78.9–80.7: A−  
+- 80.8–84.0: A  
+- 84.1–100: A+
 
-### Interpretation of SUS scores (acceptability)
+### Acceptability
 
-- 0-50: Not acceptable
-- 51-62: Marginal low
-- 63-70: Marginal high
-- 71-100: Acceptable
+- 0–51.6: Not Acceptable  
+- 51.7–62.6: Marginal  
+- 62.7–71.0: Marginal  
+- 71.1–100: Acceptable
 
 Source: [https://measuringu.com/interpret-sus-score/](https://measuringu.com/interpret-sus-score/)
 

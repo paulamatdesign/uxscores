@@ -31,24 +31,35 @@ def ci(x):
     return [ci_low, ci_high]
 
 def sus_as_grade(s):
-        if s <= 60:
-            return "F"
-        elif s <= 70:
-            return "D"
-        elif s <= 80:
-            return "C"
-        elif s <= 90:
-            return "B"
-        else:
-            return "A"
+    if s < 25.1:
+        return "F"
+    elif s < 51.7:
+        return "F"
+    elif s < 62.7:
+        return "D"
+    elif s < 65.0:
+        return "C-"
+    elif s < 71.1:
+        return "C"
+    elif s < 72.6:
+        return "C+"
+    elif s < 74.1:
+        return "B-"
+    elif s < 77.2:
+        return "B"
+    elif s < 78.9:
+        return "B+"
+    elif s < 80.8:
+        return "A-"
+    elif s < 84.1:
+        return "A"
+    else:
+        return "A+"  # 84.1–100
 
 def sus_as_acceptability(s):
-
-    if s <= 50:
-        return "NAC"   # Not Acceptable
-    elif s <= 62:
-        return "MAL"   # Marginal Low
-    elif s <= 70:
-        return "MAH"   # Marginal High
+    if s < 51.7:
+        return "Not Acceptable"
+    elif s < 71.1:
+        return "Marginal"
     else:
-        return "ACP"   # Acceptable
+        return "Acceptable"
