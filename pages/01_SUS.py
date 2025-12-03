@@ -86,13 +86,13 @@ if uploaded_file is not None:
             alt.Chart(res.df)
             .encode(
                 x='count()',
-                y='Grades:N'
+                y='Grade:N'
             )
         )
 
         # === 2. Bar chart showing counts per grade ===
         bars = base.mark_bar().encode(
-            alt.Color("Grades:N").scale(scheme="redyellowgreen", reverse=True).legend(None)
+            alt.Color("Grade:N").scale(scheme="redyellowgreen", reverse=True).legend(None)
         )
 
         # === 3. Labels next to the bars ===
