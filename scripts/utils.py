@@ -2,7 +2,17 @@ import streamlit as st
 import numpy as np
 from scipy import stats
 
-def header():
+@st.dialog("About")
+def open_help(file):
+    # Read the markdown file
+    with open(f"descriptions/{file}.md", "r", encoding="utf-8") as f:
+        md_text = f.read()
+    # Display it in Streamlit
+    st.markdown(md_text)
+
+def intro(questionnaire=str, description=str):
+    title = f"{questionnaire} Calculator"
+    st.set_page_config(title, initial_sidebar_state="collapsed")
     st.html(
         """
             <style>
@@ -14,10 +24,17 @@ def header():
                     text-transform: uppercase;
                     letter-spacing: normal !important;
                 }
+            </style>
         """
     )
     if st.button("Home", icon=":material/arrow_back:", type="tertiary"):
         st.switch_page("Home.py")
+    col1, col2 = st.columns([11, 1])
+    with col1:
+        st.title(title)
+    with col2:
+        if st.button("", icon=":material/info:", type="tertiary", help="About"):
+            open_help(description)
 
 def ci(x):
     sd = x.std(ddof=1)

@@ -7,18 +7,7 @@ import pandas as pd
 from scripts import umuxlite as uml
 from scripts import utils as ut
 
-st.set_page_config("UMUX-Lite", initial_sidebar_state="collapsed")
-
-ut.header()
-
-st.title("UMUX-Lite Score Calculator")
-
-with st.expander("About UMUX-Lite"):
-    # Read the markdown file
-    with open("descriptions/umux_lite.md", "r", encoding="utf-8") as f:
-        md_text = f.read()
-    # Display it in Streamlit
-    st.markdown(md_text)
+ut.intro("UMUX-Lite", "umux_lite")
 
 st.header("1. Downlad and fill the template")
 with open("templates/template-umux_lite.xlsx", "rb") as f:

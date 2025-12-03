@@ -9,8 +9,9 @@ from scripts import utils as ut
 
 st.set_page_config("About", initial_sidebar_state="collapsed")
 
-ut.header()
-
+if st.button("Home", icon=":material/arrow_back:", type="tertiary"):
+        st.switch_page("Home.py")
+        
 st.title("About")
 
 with open("README.md", "r", encoding="utf-8") as f:

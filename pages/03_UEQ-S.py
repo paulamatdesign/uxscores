@@ -7,18 +7,7 @@ import pandas as pd
 from scripts import ueqs as ueq
 from scripts import utils as ut
 
-st.set_page_config("UEQ-S", initial_sidebar_state="collapsed")
-
-ut.header()
-
-st.title("UEQ-S Score Calculator")
-
-with st.expander("About UEQ-S"):
-    # Read the markdown file
-    with open("descriptions/ueqs.md", "r", encoding="utf-8") as f:
-        md_text = f.read()
-    # Display it in Streamlit
-    st.markdown(md_text)
+ut.intro("UEQ-S", "ueqs")
 
 st.header("1. Downlad and fill the template")
 with open("templates/template-ueqs.xlsx", "rb") as f:
