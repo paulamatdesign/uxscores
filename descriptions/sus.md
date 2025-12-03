@@ -64,8 +64,7 @@ Note: didn’t find official formula to compute learnability and usability. I ap
 ### Acceptability
 
 - 0–51.6: Not Acceptable  
-- 51.7–62.6: Marginal  
-- 62.7–71.0: Marginal  
+- 51.7–71.0: Marginal  
 - 71.1–100: Acceptable
 
 Source: [https://measuringu.com/interpret-sus-score/](https://measuringu.com/interpret-sus-score/)

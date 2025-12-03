@@ -209,8 +209,5 @@ if uploaded_file is not None:
 
         st.altair_chart(plot)
 
-    with st.expander("Data"):
-        st.write("Raw Data")
-        st.write(df_raw)
-        st.write("Processed Data")
-        st.write(res.df)
+    ut.show_data(df_raw, res.df)
+    

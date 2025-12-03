@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This application is an educational project created and developped by [Paul AMAT, UX Designer & Data Analyst](https://paulamatdesign.github.io/), designed to help students, researchers, and practitioners compute scores from multiple UX questionnaires. It is built with **Python** using **Streamlit**.
+This application is an educational project created and developped by [Paul AMAT, UX designer with data skills](https://paulamatdesign.github.io/), designed to help students, researchers, and practitioners compute scores from multiple UX questionnaires. It is built with **Python** using **Streamlit**.
 
 ## Licence Notice
 

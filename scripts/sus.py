@@ -1,4 +1,5 @@
 from scripts.utils import *
+import pandas as pd
 
 class sus:
     def __init__(self, raw):
@@ -8,9 +9,13 @@ class sus:
         self.mean = self.scores.mean()
         self.grade = sus_as_grade(self.mean)
         self.acceptability = sus_as_acceptability(self.mean)
+        self.learnability = self.df['Learnability'].mean()
+        self.usability = self.df['Usability'].mean()
         self.ci = ci(self.scores)
         self.ci_grade = [sus_as_grade(i) for i in self.ci]
         self.ci_acceptability = [sus_as_acceptability(i) for i in self.ci]
+        self.ci_learnability = ci(self.df['Learnability'])
+        self.ci_usability = ci(self.df['Usability'])
 
     def processed(self, df):
         to_remove = [col for col in df.columns if not col.startswith("Q")]
@@ -40,5 +45,8 @@ class sus:
         df['Grade'] = df['UserScore'].apply(sus_as_grade)
 
         df['Acceptability'] = df['UserScore'].apply(sus_as_acceptability)
+
+        df["Learnability"] = df.filter(["Q4", "Q10"]).sum(axis=1) * (100/(2*4))
+        df["Usability"] = df.filter(["Q1", "Q2", "Q3", "Q5", "Q6", "Q7", "Q8", "Q9"]).sum(axis=1) * (100/(8*4))
 
         return df

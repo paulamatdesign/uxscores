@@ -13,20 +13,29 @@ def open_help(file):
 def intro(questionnaire=str, description=str):
     title = f"{questionnaire} Calculator"
     st.set_page_config(title, initial_sidebar_state="collapsed")
-    st.html(
-        """
-            <style>
-                h2 {
-                    margin-top: 1.5rem;
-                    font-weight: 400 !important;
-                    opacity: 0.6 !important;
-                    font-size: medium !important;
-                    text-transform: uppercase;
-                    letter-spacing: normal !important;
-                }
-            </style>
-        """
-    )
+    st.markdown("""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Funnel+Sans:wght@300..800&display=swap');
+
+    html, p {
+        font-family: "Funnel Sans", sans-serif !important;
+    }
+
+    h1, h2 {
+        font-family: "Funnel Display", sans-serif !important;
+        font-weight: 800 !important;
+    }
+                
+    h2 {
+        margin-top: 1.5rem;
+        font-weight: 400 !important;
+        opacity: 0.6 !important;
+        font-size: medium !important;
+        text-transform: uppercase;
+        letter-spacing: normal !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
     if st.button("Home", icon=":material/arrow_back:", type="tertiary"):
         st.switch_page("Home.py")
     col1, col2 = st.columns([11, 1])
@@ -80,3 +89,11 @@ def sus_as_acceptability(s):
         return "Marginal"
     else:
         return "Acceptable"
+
+def show_data(raw, proc):
+    st.header("Data")
+    with st.expander("Show data"):
+        st.caption("Raw")
+        st.write(raw)
+        st.caption("Processed")
+        st.write(proc)

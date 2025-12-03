@@ -47,7 +47,7 @@ if uploaded_file is not None:
 
     col1, col2 = st.columns(2)
     with col1:
-        st.metric("Mean", round(res.mean), border=True)
+        st.metric("Mean", round(res.mean), border=True, help="help text")
         st.write(f"Mean & CI (95%): {round(res.mean)} [{round(res.ci[0])};{round(res.ci[1])}]")
     with col2:
         bar_chart = alt.Chart(res.df).mark_bar().encode(
@@ -175,8 +175,69 @@ if uploaded_file is not None:
 
         st.altair_chart(plot)
 
-    with st.expander("Data"):
-        st.write("Raw Data")
-        st.write(df_raw)
-        st.write("Processed Data")
-        st.write(res.df)
+    st.header("Learnability")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.metric("Learnability", round(res.learnability), border=True)
+        st.write(f"Learnability & CI (95%): {round(res.learnability)} [{round(res.ci_learnability[0])};{round(res.ci_learnability[1])}]")
+        st.caption("No official learnability formula found; using the overall mean method: sum x (100 / (8x4)).")
+    with col2:
+        bar_chart = alt.Chart(res.df).mark_bar().encode(
+            alt.X("Learnability:Q").bin(maxbins=20).scale(domain=[1, 100]),
+            alt.Y('count()'),
+            alt.Color("Learnability:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
+        )
+
+        mean_line = alt.Chart(pd.DataFrame({'mean_score': [res.learnability]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
+            x='mean_score:Q',
+            tooltip=[alt.Tooltip('mean_score', title=f'Mean Score')]
+        )
+
+        mean_text = (
+            alt.Chart(pd.DataFrame({'mean_score': [res.learnability]}))
+            .mark_text(align='left', dx=8, color="red")
+            .encode(
+                x='mean_score:Q',
+                y=alt.Y(datum=0.5, type="quantitative"),
+                text=alt.value("MEAN")
+            )
+        )
+
+        plot = (bar_chart + mean_line + mean_text).properties(title="Learnability Distribution & Mean")
+
+        st.altair_chart(plot)
+
+    st.header("Usability")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.metric("Usability", round(res.usability), border=True)
+        st.write(f"Usability & CI (95%): {round(res.usability)} [{round(res.ci_usability[0])};{round(res.ci_usability[1])}]")
+        st.caption("No official usability formula found; using the overall mean method: sum x (100 / (8x4)).")
+    with col2:
+        bar_chart = alt.Chart(res.df).mark_bar().encode(
+            alt.X("Usability:Q").bin(maxbins=20).scale(domain=[1, 100]),
+            alt.Y('count()'),
+            alt.Color("Usability:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
+        )
+
+        mean_line = alt.Chart(pd.DataFrame({'mean_score': [res.usability]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
+            x='mean_score:Q',
+            tooltip=[alt.Tooltip('mean_score', title=f'Mean Score')]
+        )
+
+        mean_text = (
+            alt.Chart(pd.DataFrame({'mean_score': [res.usability]}))
+            .mark_text(align='left', dx=8, color="red")
+            .encode(
+                x='mean_score:Q',
+                y=alt.Y(datum=0.5, type="quantitative"),
+                text=alt.value("MEAN")
+            )
+        )
+
+        plot = (bar_chart + mean_line + mean_text).properties(title="Usability Distribution & Mean")
+
+        st.altair_chart(plot)
+
+    ut.show_data(df_raw, res.df)
+

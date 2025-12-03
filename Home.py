@@ -1,5 +1,20 @@
 import streamlit as st
 
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Funnel+Sans:wght@300..800&display=swap');
+
+html, p {
+    font-family: "Funnel Sans", sans-serif !important;
+}
+
+h1, h2 {
+    font-family: "Funnel Display", sans-serif !important;
+    font-weight: 800 !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 st.set_page_config("UX Scores", initial_sidebar_state="collapsed")
 
 st.title("UX Scores")
@@ -12,8 +27,6 @@ with col1:
         Welcome! Select a questionnaire to start calculating UX scores.
         
         All data stays in-app and is never stored, logged, or sent to third parties.
-            
-        Made with ❤️ by [Paul AMAT](https://paulamatdesign.github.io/).
         """
     )
     @st.dialog("About this app")
@@ -23,7 +36,6 @@ with col1:
             md_text = f.read()
         # Display it in Streamlit
         st.markdown(md_text)
-    st.divider()
     if st.button("More infos", icon=":material/info:", type="tertiary"):
         about()    
 
@@ -34,3 +46,11 @@ with col2:
         st.switch_page("pages/02_UMUX-Lite.py")
     if st.button("UEQ-S", width="stretch"):
         st.switch_page("pages/03_UEQ-S.py")
+
+st.divider()
+
+st.caption(
+    """
+    Made with ❤️ by [Paul AMAT](https://paulamatdesign.github.io/).
+    """
+)
