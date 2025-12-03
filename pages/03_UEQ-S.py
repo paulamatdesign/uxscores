@@ -9,8 +9,17 @@ from scripts import utils as ut
 
 ut.intro("UEQ-S", "ueqs")
 
+st.caption(
+    """
+    From: Laugwitz, B., Schrepp, M. & Held, T. (2008). Construction and evaluation of a user experience questionnaire. In: Holzinger, A. (Ed.): USAB 2008, LNCS 5298, 63-76. [Article link](https://www.researchgate.net/publication/221217803_Construction_and_Evaluation_of_a_User_Experience_Questionnaire)
+    """
+)
+
 st.header("1. Downlad and fill the template")
-with open("templates/template-ueqs.xlsx", "rb") as f:
+
+template_path = "templates/template-ueqs.xlsx"
+
+with open(template_path, "rb") as f:
         file_bytes = f.read()
 
 st.download_button(
@@ -25,7 +34,7 @@ st.header("2. Drop your Excel file")
 uploaded_file = st.file_uploader("Choisir un fichier Excel", type=["xlsx", "xls"], label_visibility="collapsed")
 
 if st.button("Show an exemple", type="tertiary"):
-    uploaded_file = "templates/template-ueqs.xlsx"
+    uploaded_file = template_path
 
 if uploaded_file is not None:
 
@@ -131,8 +140,7 @@ if uploaded_file is not None:
         st.altair_chart(plot)
 
     with st.expander("Data"):
-        data_type = st.segmented_control("Type", ["Raw", "Processed"], label_visibility="collapsed", default="Raw")
-        if data_type == "Raw":
-            st.write(df_raw)
-        elif data_type == "Processed":
-            st.write(res.df)
+        st.write("Raw Data")
+        st.write(df_raw)
+        st.write("Processed Data")
+        st.write(res.df)

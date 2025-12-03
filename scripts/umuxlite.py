@@ -33,18 +33,12 @@ class umuxlite:
 
         # Sum across the 10 items
         df["UserScore"] = (df.sum(axis=1) / 12) * 100
-        col = df.pop("UserScore")   # remove the column
-        df.insert(0, "UserScore", col)  # reinsert at position 0
 
         # Predict SUS Score
         df["SUS_Predicted"] = 0.65 * (df["UserScore"]) + 22.9
 
-        df['Grades'] = df['SUS_Predicted'].apply(sus_as_grade)
-        col = df.pop("Grades")   # remove the column
-        df.insert(0, "Grades", col)  # reinsert at position 0
+        df['Grade'] = df['SUS_Predicted'].apply(sus_as_grade)
 
         df['Acceptability'] = df['SUS_Predicted'].apply(sus_as_acceptability)
-        col = df.pop("Acceptability")   # remove the column
-        df.insert(0, "Acceptability", col)  # reinsert at position 0
 
         return df

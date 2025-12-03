@@ -9,8 +9,17 @@ from scripts import utils as ut
 
 ut.intro("SUS", "sus")
 
+st.caption(
+    """
+    From: Brooke, John. (1995). SUS: A quick and dirty usability scale. Usability Eval. Ind.. 189. [Article link](https://www.researchgate.net/publication/228593520_SUS_A_quick_and_dirty_usability_scale)
+    """
+)
+
 st.header("1. Downlad and fill the template")
-with open("templates/template-sus.xlsx", "rb") as f:
+
+template_path = "templates/template-sus.xlsx"
+
+with open(template_path, "rb") as f:
         file_bytes = f.read()
 
 st.download_button(
@@ -23,6 +32,9 @@ st.download_button(
 
 st.header("2. Drop your Excel file")
 uploaded_file = st.file_uploader("Choisir un fichier Excel", type=["xlsx", "xls"], label_visibility="collapsed")
+
+if st.button("Show an exemple", type="tertiary"):
+    uploaded_file = template_path
 
 if uploaded_file is not None:
 
@@ -164,9 +176,7 @@ if uploaded_file is not None:
         st.altair_chart(plot)
 
     with st.expander("Data"):
-        data_type = st.segmented_control("Type", ["Raw", "Processed"], label_visibility="collapsed", default="Raw")
-        if data_type == "Raw":
-            st.write(df_raw)
-        elif data_type == "Processed":
-            st.write(res.df)
-
+        st.write("Raw Data")
+        st.write(df_raw)
+        st.write("Processed Data")
+        st.write(res.df)

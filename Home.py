@@ -1,15 +1,36 @@
 import streamlit as st
 
 st.set_page_config("UX Scores", initial_sidebar_state="collapsed")
+
 st.title("UX Scores")
 
-st.write("Welcome! Select a questionnaire to start calculating UX scores.")
+col1, col2 = st.columns(2, gap="large")
 
-if st.button("SUS *(System Usability Scale)*", icon=":material/arrow_forward:", width="stretch"):
-    st.switch_page("pages/01_SUS.py")
-if st.button("UMUX-Lite *(Usability Metric for User Experience – Lite)*", icon=":material/arrow_forward:", width="stretch"):
-    st.switch_page("pages/02_UMUX-Lite.py")
-if st.button("UEQ-S *(User Experience Questionnaire – Short)*", icon=":material/arrow_forward:", width="stretch"):
-    st.switch_page("pages/03_UEQ-S.py")
-if st.button("About this app", icon=":material/arrow_forward:", width="stretch"):
-    st.switch_page("pages/04_About.py")
+with col1:
+    st.write(
+        """
+        Welcome! Select a questionnaire to start calculating UX scores.
+        
+        All data stays in-app and is never stored, logged, or sent to third parties.
+            
+        Made with ❤️ by [Paul AMAT](https://paulamatdesign.github.io/).
+        """
+    )
+    @st.dialog("About this app")
+    def about():
+        # Read the markdown file
+        with open(f"README.md", "r", encoding="utf-8") as f:
+            md_text = f.read()
+        # Display it in Streamlit
+        st.markdown(md_text)
+    st.divider()
+    if st.button("More infos", icon=":material/info:", type="tertiary"):
+        about()    
+
+with col2:
+    if st.button("SUS", width="stretch"):
+        st.switch_page("pages/01_SUS.py")
+    if st.button("UMUX-Lite", width="stretch"):
+        st.switch_page("pages/02_UMUX-Lite.py")
+    if st.button("UEQ-S", width="stretch"):
+        st.switch_page("pages/03_UEQ-S.py")

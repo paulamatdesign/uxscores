@@ -9,8 +9,17 @@ from scripts import utils as ut
 
 ut.intro("UMUX-Lite", "umux_lite")
 
+st.caption(
+    """
+    From: Lewis, James R. et al. “UMUX-LITE: when there’s no time for the SUS.” Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (2013): n. pag. [Article link](https://www.semanticscholar.org/paper/UMUX-LITE%3A-when-there's-no-time-for-the-SUS-Lewis-Utesch/33995b2a7d85d2247ba1cd5ac5777da9248e82e8)
+    """
+)
+
 st.header("1. Downlad and fill the template")
-with open("templates/template-umux_lite.xlsx", "rb") as f:
+
+template_path = "templates/template-umux_lite.xlsx"
+
+with open(template_path, "rb") as f:
         file_bytes = f.read()
 
 st.download_button(
@@ -26,7 +35,7 @@ uploaded_file = st.file_uploader("Choisir un fichier Excel", type=["xlsx", "xls"
 st.caption("Only 7-point scales are supported.")
 
 if st.button("Show an exemple", type="tertiary"):
-    uploaded_file = "templates/template-umux_lite.xlsx"
+    uploaded_file = template_path
 
 if uploaded_file is not None:
 
@@ -201,9 +210,7 @@ if uploaded_file is not None:
         st.altair_chart(plot)
 
     with st.expander("Data"):
-        data_type = st.segmented_control("Type", ["Raw", "Processed"], label_visibility="collapsed", default="Raw")
-        if data_type == "Raw":
-            st.write(df_raw)
-        elif data_type == "Processed":
-            st.write(res.df)
-
+        st.write("Raw Data")
+        st.write(df_raw)
+        st.write("Processed Data")
+        st.write(res.df)
