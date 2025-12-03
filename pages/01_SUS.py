@@ -163,8 +163,6 @@ if uploaded_file is not None:
 
         st.altair_chart(plot)
 
-    st.divider()
-
     with st.expander("Data"):
         data_type = st.segmented_control("Type", ["Raw", "Processed"], label_visibility="collapsed", default="Raw")
         if data_type == "Raw":
