@@ -44,6 +44,10 @@ if uploaded_file is not None:
 
     res = uml.umuxlite(df_raw)
 
+    st.header("SUS Predicted Overview")
+
+    ut.slider_sus(round(res.sus_predicted), res.sus_acceptability)
+
     st.header("Mean Score")
 
     col1, col2 = st.columns(2, gap="medium")
@@ -111,8 +115,8 @@ if uploaded_file is not None:
     st.header("SUS Predicted Grade")
     col1, col2 = st.columns(2, gap="medium")
     with col1:
-        st.metric("Predicted Grade", res.grade, border=True)
-        st.write(f"Grade & CI (95%) as Grade: {res.grade} [{res.sus_predicted_ci_grade[0]};{res.sus_predicted_ci_grade[1]}]")
+        st.metric("Predicted Grade", res.sus_grade, border=True)
+        st.write(f"Grade & CI (95%) as Grade: {res.sus_grade} [{res.sus_predicted_ci_grade[0]};{res.sus_predicted_ci_grade[1]}]")
     with col2:
         # === 1. Base chart: common encoding ===
         base = (
@@ -139,7 +143,7 @@ if uploaded_file is not None:
             alt.Chart()  # no data needed for a pure datum-based rule
             .mark_rule(color="red", size=2, strokeDash=[3, 3])
             .encode(
-                y=alt.Y(datum=res.grade, type="nominal")   # grade = "D"
+                y=alt.Y(datum=res.sus_grade, type="nominal")   # grade = "D"
             )
         )
 
@@ -147,7 +151,7 @@ if uploaded_file is not None:
             alt.Chart()
             .mark_text(align='left', dy=-8, color="red")
             .encode(
-                y=alt.Y(datum=res.grade, type="nominal"),
+                y=alt.Y(datum=res.sus_grade, type="nominal"),
                 x=alt.Y(datum=0.5, type="quantitative"),
                 text=alt.value("PREDICTED MEAN")
             )
@@ -161,8 +165,8 @@ if uploaded_file is not None:
     st.header("SUS Predicted Acceptability")
     col1, col2 = st.columns(2, gap="medium")
     with col1:
-        st.metric("Predicted Acceptability", res.acceptability, border=True)
-        st.write(f"Acceptability & CI (95%) as Acceptability: {res.acceptability} [{res.sus_predicted_ci_acceptability[0]};{res.sus_predicted_ci_acceptability[1]}]")
+        st.metric("Predicted Acceptability", res.sus_acceptability, border=True)
+        st.write(f"Acceptability & CI (95%) as Acceptability: {res.sus_acceptability} [{res.sus_predicted_ci_acceptability[0]};{res.sus_predicted_ci_acceptability[1]}]")
     with col2:
         # === 1. Base chart: common encoding ===
         base = (
@@ -189,7 +193,7 @@ if uploaded_file is not None:
             alt.Chart()  # no data needed for a pure datum-based rule
             .mark_rule(color="red", size=2, strokeDash=[3, 3])
             .encode(
-                y=alt.Y(datum=res.acceptability, type="nominal")   # grade = "D"
+                y=alt.Y(datum=res.sus_acceptability, type="nominal")   # grade = "D"
             )
         )
 
@@ -197,7 +201,7 @@ if uploaded_file is not None:
             alt.Chart()
             .mark_text(align='left', dy=-8, color="red")
             .encode(
-                y=alt.Y(datum=res.acceptability, type="nominal"),
+                y=alt.Y(datum=res.sus_acceptability, type="nominal"),
                 x=alt.Y(datum=0.5, type="quantitative"),
                 text=alt.value("PREDICTED MEAN")
             )

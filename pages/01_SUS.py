@@ -43,6 +43,10 @@ if uploaded_file is not None:
 
     res = sus.sus(df_raw)
 
+    st.header("Overview")
+
+    ut.slider_sus(round(res.mean), res.acceptability)
+
     st.header("Mean Score")
 
     col1, col2 = st.columns(2, gap="medium")

@@ -8,8 +8,8 @@ class umuxlite:
         self.mean = self.scores.mean()
         self.ci = ci(self.scores)
         self.sus_predicted = self.df["SUS_Predicted"].mean()
-        self.grade = sus_as_grade(self.sus_predicted)
-        self.acceptability = sus_as_acceptability(self.sus_predicted)
+        self.sus_grade = sus_as_grade(self.sus_predicted)
+        self.sus_acceptability = sus_as_acceptability(self.sus_predicted)
         self.sus_predicted_ci = ci(self.df["SUS_Predicted"])
         self.sus_predicted_ci_grade = [sus_as_grade(i) for i in self.sus_predicted_ci]
         self.sus_predicted_ci_acceptability = [sus_as_acceptability(i) for i in self.sus_predicted_ci]

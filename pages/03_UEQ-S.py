@@ -43,7 +43,11 @@ if uploaded_file is not None:
 
     res = ueq.ueqs(df_raw)
 
-    st.header("Overall")
+    st.header("Overview")
+
+    ut.slider_ueqs(round(res.mean))
+
+    st.header("Overall Mean")
 
     col1, col2 = st.columns(2, gap="medium")
     with col1:
