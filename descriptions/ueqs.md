@@ -28,4 +28,4 @@ questionnaire. In: Holzinger, A. (Ed.): USAB 2008, LNCS 5298, 63-76. [https://ww
 ## Transform
 
 - Rescales the data to the range -3 to 3.
-- For each dimension, compute mean and other descriptives statistics.
+- For each dimension, compute mean and other descriptives.
