@@ -45,46 +45,47 @@ if uploaded_file is not None:
 
     st.header("Overview")
 
-    ut.slider_ueqs(round(res.mean))
+    ut.slider_ueqs(round(res.mci[0]))
 
     st.header("Overall Mean")
 
     col1, col2 = st.columns(2, gap="medium")
     with col1:
-        st.metric("Mean", round(res.mean, 1), border=True)
-        st.write(f"Mean & CI (95%): {round(res.mean, 1)} [{round(res.ci[0], 1)};{round(res.ci[1], 1)}]")
+        st.metric("Mean", round(res.mci[0], 1), border=True)
+        st.write(f"Mean & CI (95%): {round(res.mci[0], 1)} [{round(res.mci[1], 1)};{round(res.mci[2], 1)}]")
     with col2:
-        bar_chart = alt.Chart(res.df).mark_bar().encode(
-            alt.X("UserScore:Q").bin(maxbins=20).scale(domain=[-3, 3]),
-            alt.Y('count()'),
-            alt.Color("UserScore:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
-        )
+        pass
+    bar_chart = alt.Chart(res.df).mark_bar().encode(
+        alt.X("UserScore:Q").bin(maxbins=20).scale(domain=[-3, 3]),
+        alt.Y('count()'),
+        alt.Color("UserScore:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
+    )
 
-        mean_line = alt.Chart(pd.DataFrame({'mean_score': [res.mean]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
+    mean_line = alt.Chart(pd.DataFrame({'mean_score': [res.mci[0]]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
+        x='mean_score:Q',
+        tooltip=[alt.Tooltip('mean_score', title=f'Mean Score')]
+    )
+
+    mean_text = (
+        alt.Chart(pd.DataFrame({'mean_score': [res.mci[0]]}))
+        .mark_text(align='left', dx=8, color="red")
+        .encode(
             x='mean_score:Q',
-            tooltip=[alt.Tooltip('mean_score', title=f'Mean Score')]
+            y=alt.Y(datum=0.5, type="quantitative"),
+            text=alt.value("MEAN")
         )
+    )
 
-        mean_text = (
-            alt.Chart(pd.DataFrame({'mean_score': [res.mean]}))
-            .mark_text(align='left', dx=8, color="red")
-            .encode(
-                x='mean_score:Q',
-                y=alt.Y(datum=0.5, type="quantitative"),
-                text=alt.value("MEAN")
-            )
-        )
+    plot = (bar_chart + mean_line + mean_text).properties(title="User Scores Distribution & Mean")
 
-        plot = (bar_chart + mean_line + mean_text).properties(title="User Scores Distribution & Mean")
-
-        st.altair_chart(plot)
+    st.altair_chart(plot)
 
     st.header("Pragmatic Quality")
 
     col1, col2 = st.columns(2, gap="medium")
     with col1:
-        st.metric("Pragmatic Mean", round(res.mean_pragmatic, 1), border=True)
-        st.write(f"Predicted Mean & CI (95%): {round(res.mean_pragmatic, 1)} [{round(res.ci_pragmatic[0], 1)};{round(res.ci_pragmatic[1], 1)}]")
+        st.metric("Pragmatic Mean", round(res.mci_pragmatic[0], 1), border=True)
+        st.write(f"Predicted Mean & CI (95%): {round(res.mci_pragmatic[0], 1)} [{round(res.mci_pragmatic[1], 1)};{round(res.mci_pragmatic[2], 1)}]")
     with col2:
         bar_chart = alt.Chart(res.df).mark_bar().encode(
             alt.X("UserScore_Pragmatic:Q").bin(maxbins=20).scale(domain=[-3, 3]),
@@ -92,13 +93,13 @@ if uploaded_file is not None:
             alt.Color("UserScore_Pragmatic:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
         )
 
-        mean_line = alt.Chart(pd.DataFrame({'mean_score': [res.mean_pragmatic]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
+        mean_line = alt.Chart(pd.DataFrame({'mean_score': [res.mci_pragmatic[0]]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
             x='mean_score:Q',
             tooltip=[alt.Tooltip('mean_score', title=f'Mean Score')]
         )
 
         mean_text = (
-            alt.Chart(pd.DataFrame({'mean_score': [res.mean_pragmatic]}))
+            alt.Chart(pd.DataFrame({'mean_score': [res.mci_pragmatic[0]]}))
             .mark_text(align='left', dx=8, color="red")
             .encode(
                 x='mean_score:Q',
@@ -115,8 +116,8 @@ if uploaded_file is not None:
 
     col1, col2 = st.columns(2, gap="medium")
     with col1:
-        st.metric("Hedonic Mean", round(res.mean_hedonic, 1), border=True)
-        st.write(f"Predicted Mean & CI (95%): {round(res.mean_hedonic, 1)} [{round(res.ci_hedonic[0], 1)};{round(res.ci_hedonic[1], 1)}]")
+        st.metric("Hedonic Mean", round(res.mci_hedonic[0], 1), border=True)
+        st.write(f"Predicted Mean & CI (95%): {round(res.mci_hedonic[0], 1)} [{round(res.mci_hedonic[1], 1)};{round(res.mci_hedonic[2], 1)}]")
     with col2:
         bar_chart = alt.Chart(res.df).mark_bar().encode(
             alt.X("UserScore_Hedonic:Q").bin(maxbins=20).scale(domain=[-3, 3]),
@@ -124,13 +125,13 @@ if uploaded_file is not None:
             alt.Color("UserScore_Hedonic:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
         )
 
-        mean_line = alt.Chart(pd.DataFrame({'mean_score': [res.mean_hedonic]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
+        mean_line = alt.Chart(pd.DataFrame({'mean_score': [res.mci_hedonic[0]]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
             x='mean_score:Q',
             tooltip=[alt.Tooltip('mean_score', title=f'Mean Score')]
         )
 
         mean_text = (
-            alt.Chart(pd.DataFrame({'mean_score': [res.mean_hedonic]}))
+            alt.Chart(pd.DataFrame({'mean_score': [res.mci_hedonic[0]]}))
             .mark_text(align='left', dx=8, color="red")
             .encode(
                 x='mean_score:Q',

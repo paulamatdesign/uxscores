@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 from scipy import stats
+import altair as alt
 
 @st.dialog("About")
 def open_help(file):
@@ -45,16 +46,17 @@ def intro(questionnaire=str, description=str):
         if st.button("", icon=":material/info:", type="tertiary", help="About"):
             open_help(description)
 
-def ci(x):
+def mci(x):
+    mean = x.mean()
     sd = x.std(ddof=1)
     n = len(x)
     se = sd / np.sqrt(n)
     dfree = n - 1
     t_crit = stats.t.ppf(1 - 0.05/2, dfree)
     errormargin = t_crit * se
-    ci_low = x.mean() - errormargin
-    ci_high = x.mean() + errormargin
-    return [ci_low, ci_high]
+    ci_low = mean - errormargin
+    ci_high = mean + errormargin
+    return [mean, ci_low, ci_high]
 
 def sus_as_grade(s):
     if s < 25.1:

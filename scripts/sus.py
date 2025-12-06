@@ -5,17 +5,11 @@ class sus:
     def __init__(self, raw):
         self.raw = raw
         self.df = self.processed(raw)
-        self.scores = self.df['UserScore']
-        self.mean = self.scores.mean()
-        self.grade = sus_as_grade(self.mean)
-        self.acceptability = sus_as_acceptability(self.mean)
-        self.learnability = self.df['Learnability'].mean()
-        self.usability = self.df['Usability'].mean()
-        self.ci = ci(self.scores)
-        self.ci_grade = [sus_as_grade(i) for i in self.ci]
-        self.ci_acceptability = [sus_as_acceptability(i) for i in self.ci]
-        self.ci_learnability = ci(self.df['Learnability'])
-        self.ci_usability = ci(self.df['Usability'])
+        self.mci = mci(self.df['UserScore'])
+        self.mci_grade = [sus_as_grade(x) for x in self.mci]
+        self.mci_acceptability = [sus_as_acceptability(x) for x in self.mci]
+        self.mci_learnability = mci(self.df['Learnability'])
+        self.mci_usability = mci(self.df['Usability'])
 
     def processed(self, df):
         to_remove = [col for col in df.columns if not col.startswith("Q")]

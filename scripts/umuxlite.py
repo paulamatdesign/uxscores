@@ -4,15 +4,10 @@ class umuxlite:
     def __init__(self, raw):
         self.raw = raw
         self.df = self.processed(raw)
-        self.scores = self.df['UserScore']
-        self.mean = self.scores.mean()
-        self.ci = ci(self.scores)
-        self.sus_predicted = self.df["SUS_Predicted"].mean()
-        self.sus_grade = sus_as_grade(self.sus_predicted)
-        self.sus_acceptability = sus_as_acceptability(self.sus_predicted)
-        self.sus_predicted_ci = ci(self.df["SUS_Predicted"])
-        self.sus_predicted_ci_grade = [sus_as_grade(i) for i in self.sus_predicted_ci]
-        self.sus_predicted_ci_acceptability = [sus_as_acceptability(i) for i in self.sus_predicted_ci]
+        self.mci = mci(self.df['UserScore'])
+        self.mci_sus = mci(self.df["SUS_Predicted"])
+        self.mci_sus_grade = [sus_as_grade(x) for x in self.mci_sus]
+        self.mci_sus_acceptability = [sus_as_acceptability(x) for x in self.mci_sus]
 
     def processed(self, df):
         to_remove = [col for col in df.columns if not col.startswith("Q")]

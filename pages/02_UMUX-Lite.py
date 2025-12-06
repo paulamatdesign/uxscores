@@ -46,46 +46,47 @@ if uploaded_file is not None:
 
     st.header("SUS Predicted Overview")
 
-    ut.slider_sus(round(res.sus_predicted), res.sus_acceptability)
+    ut.slider_sus(round(res.mci_sus[0]), res.mci_sus_acceptability[0])
 
     st.header("Mean Score")
 
     col1, col2 = st.columns(2, gap="medium")
     with col1:
-        st.metric("Mean", round(res.mean), border=True)
-        st.write(f"Mean & CI (95%): {round(res.mean)} [{round(res.ci[0])};{round(res.ci[1])}]")
+        st.metric("Mean", round(res.mci[0]), border=True)
+        st.write(f"Mean & CI (95%): {round(res.mci[0])} [{round(res.mci[1])};{round(res.mci[2])}]")
     with col2:
-        bar_chart = alt.Chart(res.df).mark_bar().encode(
-            alt.X("UserScore:Q").bin(maxbins=20).scale(domain=[0, 100]),
-            alt.Y('count()'),
-            alt.Color("UserScore:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
-        )
+        pass
+    bar_chart = alt.Chart(res.df).mark_bar().encode(
+        alt.X("UserScore:Q").bin(maxbins=20).scale(domain=[0, 100]),
+        alt.Y('count()'),
+        alt.Color("UserScore:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
+    )
 
-        mean_line = alt.Chart(pd.DataFrame({'mean_score': [res.mean]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
+    mean_line = alt.Chart(pd.DataFrame({'mean_score': [res.mci[0]]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
+        x='mean_score:Q',
+        tooltip=[alt.Tooltip('mean_score', title=f'Mean Score')]
+    )
+
+    mean_text = (
+        alt.Chart(pd.DataFrame({'mean_score': [res.mci[0]]}))
+        .mark_text(align='left', dx=8, color="red")
+        .encode(
             x='mean_score:Q',
-            tooltip=[alt.Tooltip('mean_score', title=f'Mean Score')]
+            y=alt.Y(datum=0.5, type="quantitative"),
+            text=alt.value("MEAN")
         )
+    )
 
-        mean_text = (
-            alt.Chart(pd.DataFrame({'mean_score': [res.mean]}))
-            .mark_text(align='left', dx=8, color="red")
-            .encode(
-                x='mean_score:Q',
-                y=alt.Y(datum=0.5, type="quantitative"),
-                text=alt.value("MEAN")
-            )
-        )
+    plot = (bar_chart + mean_line + mean_text).properties(title="User Scores Distribution & Mean")
 
-        plot = (bar_chart + mean_line + mean_text).properties(title="User Scores Distribution & Mean")
-
-        st.altair_chart(plot)
+    st.altair_chart(plot)
 
     st.header("SUS Predicted Score")
 
     col1, col2 = st.columns(2, gap="medium")
     with col1:
-        st.metric("Predicted Mean", round(res.sus_predicted), border=True)
-        st.write(f"Predicted Mean & CI (95%): {round(res.sus_predicted)} [{round(res.sus_predicted_ci[0])};{round(res.sus_predicted_ci[1])}]")
+        st.metric("Predicted Mean", round(res.mci_sus[0]), border=True)
+        st.write(f"Predicted Mean & CI (95%): {round(res.mci_sus[0])} [{round(res.mci_sus[1])};{round(res.mci_sus[2])}]")
     with col2:
         bar_chart = alt.Chart(res.df).mark_bar().encode(
             alt.X("SUS_Predicted:Q").bin(maxbins=20).scale(domain=[0, 100]),
@@ -93,13 +94,13 @@ if uploaded_file is not None:
             alt.Color("SUS_Predicted:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
         )
 
-        mean_line = alt.Chart(pd.DataFrame({'mean_score': [res.sus_predicted]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
+        mean_line = alt.Chart(pd.DataFrame({'mean_score': [res.mci_sus[0]]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
             x='mean_score:Q',
             tooltip=[alt.Tooltip('mean_score', title=f'Mean Score')]
         )
 
         mean_text = (
-            alt.Chart(pd.DataFrame({'mean_score': [res.sus_predicted]}))
+            alt.Chart(pd.DataFrame({'mean_score': [res.mci_sus[0]]}))
             .mark_text(align='left', dx=8, color="red")
             .encode(
                 x='mean_score:Q',
@@ -115,8 +116,8 @@ if uploaded_file is not None:
     st.header("SUS Predicted Grade")
     col1, col2 = st.columns(2, gap="medium")
     with col1:
-        st.metric("Predicted Grade", res.sus_grade, border=True)
-        st.write(f"Grade & CI (95%) as Grade: {res.sus_grade} [{res.sus_predicted_ci_grade[0]};{res.sus_predicted_ci_grade[1]}]")
+        st.metric("Predicted Grade", res.mci_sus_grade[0], border=True)
+        st.write(f"Grade & CI (95%) as Grade: {res.mci_sus_grade[0]} [{res.mci_sus_grade[1]};{res.mci_sus_grade[2]}]")
     with col2:
         # === 1. Base chart: common encoding ===
         base = (
@@ -143,7 +144,7 @@ if uploaded_file is not None:
             alt.Chart()  # no data needed for a pure datum-based rule
             .mark_rule(color="red", size=2, strokeDash=[3, 3])
             .encode(
-                y=alt.Y(datum=res.sus_grade, type="nominal")   # grade = "D"
+                y=alt.Y(datum=res.mci_sus_grade[0], type="nominal")   # grade = "D"
             )
         )
 
@@ -151,7 +152,7 @@ if uploaded_file is not None:
             alt.Chart()
             .mark_text(align='left', dy=-8, color="red")
             .encode(
-                y=alt.Y(datum=res.sus_grade, type="nominal"),
+                y=alt.Y(datum=res.mci_sus_grade[0], type="nominal"),
                 x=alt.Y(datum=0.5, type="quantitative"),
                 text=alt.value("PREDICTED MEAN")
             )
@@ -165,8 +166,8 @@ if uploaded_file is not None:
     st.header("SUS Predicted Acceptability")
     col1, col2 = st.columns(2, gap="medium")
     with col1:
-        st.metric("Predicted Acceptability", res.sus_acceptability, border=True)
-        st.write(f"Acceptability & CI (95%) as Acceptability: {res.sus_acceptability} [{res.sus_predicted_ci_acceptability[0]};{res.sus_predicted_ci_acceptability[1]}]")
+        st.metric("Predicted Acceptability", res.mci_sus_acceptability[0], border=True)
+        st.write(f"Acceptability & CI (95%) as Acceptability: {res.mci_sus_acceptability[0]} [{res.mci_sus_acceptability[1]};{res.mci_sus_acceptability[2]}]")
     with col2:
         # === 1. Base chart: common encoding ===
         base = (
@@ -193,7 +194,7 @@ if uploaded_file is not None:
             alt.Chart()  # no data needed for a pure datum-based rule
             .mark_rule(color="red", size=2, strokeDash=[3, 3])
             .encode(
-                y=alt.Y(datum=res.sus_acceptability, type="nominal")   # grade = "D"
+                y=alt.Y(datum=res.mci_sus_acceptability[0], type="nominal")   # grade = "D"
             )
         )
 
@@ -201,7 +202,7 @@ if uploaded_file is not None:
             alt.Chart()
             .mark_text(align='left', dy=-8, color="red")
             .encode(
-                y=alt.Y(datum=res.sus_acceptability, type="nominal"),
+                y=alt.Y(datum=res.mci_sus_acceptability[0], type="nominal"),
                 x=alt.Y(datum=0.5, type="quantitative"),
                 text=alt.value("PREDICTED MEAN")
             )
