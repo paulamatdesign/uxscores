@@ -29,6 +29,7 @@ with col1:
         All data stays in-app and is never stored, logged, or sent to third parties.
         """
     )
+
     @st.dialog("About this app")
     def about():
         # Read the markdown file
@@ -36,8 +37,15 @@ with col1:
             md_text = f.read()
         # Display it in Streamlit
         st.markdown(md_text)
+
     if st.button("More infos", icon=":material/info:", type="tertiary"):
         about()    
+
+    st.caption(
+        """
+        Made by [Paul AMAT](https://paulamatdesign.github.io/).
+        """
+    )
 
 with col2:
     if st.button("SUS", width="stretch"):
@@ -46,11 +54,3 @@ with col2:
         st.switch_page("pages/02_UMUX-Lite.py")
     if st.button("UEQ-S", width="stretch"):
         st.switch_page("pages/03_UEQ-S.py")
-
-st.divider()
-
-st.caption(
-    """
-    Made with ❤️ by [Paul AMAT](https://paulamatdesign.github.io/).
-    """
-)
