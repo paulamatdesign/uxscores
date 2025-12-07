@@ -1,0 +1,63 @@
+Name,Items,Measures,Scope,Sub_constructs,Source,Free,Ready
+SUS,10,Usability,System,Usability,Brooke (1996),True,True
+SUS,10,Usability,System,Learnability,Borsci et al. (2009); Sauro & Lewis (2009),True,True
+PSSUQ,16,Satisfaction,,System quality,Lewis (1992),True,False
+PSSUQ,16,Satisfaction,,Information quality,Lewis (1992),True,False
+PSSUQ,16,Satisfaction,,Interface quality,Lewis (1992),True,False
+SUMI,50,Usability,,Efficiency,Kirakowski (1996),False,False
+SUMI,50,Usability,,Affect,Kirakowski (1996),False,False
+SUMI,50,Usability,,Helpfulness,Kirakowski (1996),False,False
+SUMI,50,Usability,,Control,Kirakowski (1996),False,False
+SUMI,50,Usability,,Learnability,Kirakowski (1996),False,False
+QUIS,27,Satisfaction,Interaction,Overall reaction,Chin et al. (1988),False,False
+QUIS,27,Satisfaction,Interaction,Screen factors,Chin et al. (1988),False,False
+QUIS,27,Satisfaction,Interaction,Terminology and system feedback,Chin et al. (1988),False,False
+QUIS,27,Satisfaction,Interaction,Learning factors,Chin et al. (1988),False,False
+QUIS,27,Satisfaction,Interaction,System capabilities,Chin et al. (1988),False,False
+WAMMI,20,Usability,Website,Attractiveness,Kirakowski & Cierlik (1998),,False
+WAMMI,20,Usability,Website,Controllability,Kirakowski & Cierlik (1998),,False
+WAMMI,20,Usability,Website,Efficiency,Kirakowski & Cierlik (1998),,False
+WAMMI,20,Usability,Website,Helpfulness,Kirakowski & Cierlik (1998),,False
+WAMMI,20,Usability,Website,Learnability,Kirakowski & Cierlik (1998),,False
+WQ,25,Quality,Website,Specific content,Aladwani & Palvia (2002),,False
+WQ,25,Quality,Website,Content quality,Aladwani & Palvia (2002),,False
+WQ,25,Quality,Website,Appearance,Aladwani & Palvia (2002),,False
+WQ,25,Quality,Website,Technical adequacy,Aladwani & Palvia (2002),,False
+WU,8,Usability,Website,Ease of navigation,Wang & Senecal (2007),,False
+WU,8,Usability,Website,Speed,Wang & Senecal (2007),,False
+WU,8,Usability,Website,Interactivity,Wang & Senecal (2007),,False
+IS,15,Satisfaction,Information,Customer centeredness,Lascu & Clow (2008),,False
+IS,15,Satisfaction,Information,Transaction reliability,Lascu & Clow (2008),,False
+IS,15,Satisfaction,Information,Problem-solving ability,Lascu & Clow (2008),,False
+IS,15,Satisfaction,Information,Ease of navigation,Lascu & Clow (2008),,False
+ISQ,13,Satisfaction,Intranet,Content quality,Bargas-Avila et al. (2009),,False
+ISQ,13,Satisfaction,Intranet,Intranet usability,Bargas-Avila et al. (2009),,False
+UMUX,4,Usability,,Perceived usability,Finstad (2010),True,False
+UMUX-Lite,2,Usability,,Perceived usability,Lewis et al. (2013),True,True
+HQ,7,Hedonic quality,,Ergonomic quality,Hassenzahl (2001),,False
+HQ,7,Hedonic quality,,Appeal,Hassenzahl (2001),,False
+ACSI,14,Satisfaction,Customer,Quality,theacsi.org,,False
+ACSI,14,Satisfaction,Customer,Freshness of information,theacsi.org,,False
+ACSI,14,Satisfaction,Customer,Clarity of site organization,theacsi.org,,False
+ACSI,14,Satisfaction,Customer,Overall satisfaction,theacsi.org,,False
+ACSI,14,Satisfaction,Customer,Loyalty,theacsi.org,,False
+CXi,3,Experience,Customer,Usefulness,forrester.com,,False
+CXi,3,Experience,Customer,Usability,forrester.com,,False
+CXi,3,Experience,Customer,Enjoyability,forrester.com,,False
+NPS,1,Loyalty,Customer,Customer loyalty,Reichheld (2003),,False
+TAM,12,Acceptance,Technology,Usefulness,Davis (1989),,False
+TAM,12,Acceptance,Technology,Ease of use,Davis (1989),,False
+WEBQUAL,36,Quality,Website,Informational fit to task,Loiacono et al. (2002),,False
+WEBQUAL,36,Quality,Website,Tailored communication,Loiacono et al. (2002),,False
+WEBQUAL,36,Quality,Website,Trust,Loiacono et al. (2002),,False
+WEBQUAL,36,Quality,Website,Response time,Loiacono et al. (2002),,False
+WEBQUAL,36,Quality,Website,Ease of understanding,Loiacono et al. (2002),,False
+WEBQUAL,36,Quality,Website,Intuitive operations,Loiacono et al. (2002),,False
+WEBQUAL,36,Quality,Website,Visual appeal,Loiacono et al. (2002),,False
+WEBQUAL,36,Quality,Website,Innovativeness,Loiacono et al. (2002),,False
+WEBQUAL,36,Quality,Website,Emotional appeal,Loiacono et al. (2002),,False
+WEBQUAL,36,Quality,Website,Consistent image,Loiacono et al. (2002),,False
+WEBQUAL,36,Quality,Website,Online completeness,Loiacono et al. (2002),,False
+WEBQUAL,36,Quality,Website,Relative advantage,Loiacono et al. (2002),,False
+UEQ-S,8,Usability,Undefined,Pragmatic Quality,Laugwitz et al. (2008),True,True
+UEQ-S,8,Usability,Undefined,Hedonic Quality,Laugwitz et al. (2008),True,True
