@@ -48,7 +48,7 @@ df = pd.read_csv("assets/questionnaires.csv")
 
 df["Length"] = ["Short" if int(x) <= 10 else "Long" for x in df["Items"]]
 
-col1, col2, col3, col4, col5 = st.columns(5)
+col1, col2 = st.columns([4, 8], gap="large")
 
 with col1:
     options = ["All"] + df["Scope"].unique().tolist()
@@ -56,43 +56,40 @@ with col1:
     if selection != "All":
         df = df[df["Scope"] == selection]
 
-with col2:
     options = ["All"] + df["Length"].unique().tolist()
     selection = st.selectbox("Length", options)
     if selection != "All":
         df = df[df["Length"] == selection]
 
-with col3:
     options = ["All"] + df["Measures"].unique().tolist()
     selection = st.selectbox("Measures", options)
     if selection != "All":
         df = df[df["Measures"] == selection]
 
-with col4:
     options = ["All"] + df["Sub_constructs"].unique().tolist()
     selection = st.selectbox("Sub-constructs", options)
     if selection != "All":
         df = df[df["Sub_constructs"] == selection]
 
-with col5:
     options = ["True", "False"]
     selection = st.toggle("Free only", False)
     if selection:
         df = df[df["Free"] == True]
 
-df = df.sort_values(by = "Ready", ascending=False)
+with col2:
+    df = df.sort_values(by = "Ready", ascending=False)
 
-if len(df) > 0:
-    for name in df["Name"].unique():
-        page_path = f"pages/{name}.py"
-        if os.path.exists(page_path):
-            d = False
-            h = ""
-        else:
-            d = True
-            h = "Coming soon..."
-        if st.button(name, width="stretch", disabled=d, help=h, type="primary"):
-            st.switch_page(f"pages/{name}.py")
+    if len(df) > 0:
+        for name in df["Name"].unique():
+            page_path = f"pages/{name}.py"
+            if os.path.exists(page_path):
+                d = False
+                h = ""
+            else:
+                d = True
+                h = "Coming soon..."
+            if st.button(name, width="stretch", disabled=d, help=h, type="primary"):
+                st.switch_page(f"pages/{name}.py")
 
-else:
-    st.write("No questionnaire matches your filters.")
+    else:
+        st.write("No questionnaire matches your filters.")
