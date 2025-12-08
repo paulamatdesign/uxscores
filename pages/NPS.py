@@ -7,11 +7,11 @@ import pandas as pd
 from scripts import nps as nps
 from scripts import utils as ut
 
-ut.intro("NPS", "nps")
+ut.intro("NPS®", "nps")
 
 st.caption(
     """
-    From: ---
+    Net Promoter®, NPS®, NPS Prism®, and the NPS-related emoticons are registered trademarks of Bain & Company, Inc., NICE Systems, Inc., and Fred Reichheld. Net Promoter ScoreSM and Net Promoter SystemSM are service marks of Bain & Company, Inc., NICE Systems, Inc., and Fred Reichheld.
     """
 )
 
@@ -43,23 +43,23 @@ if uploaded_file is not None:
 
     res = nps.NPS(df_raw)
 
-    st.header("NPS Overview")
+    st.header("Overview")
 
-    #ut.slider_sus(round(res.mci[0]), res.mci[0])
+    nps.slider_nps(round(res.score), res.interpretation)
 
-    st.header("NPS Score")
+    st.header("NPS")
 
     col1, col2 = st.columns(2, gap="medium")
     with col1:
-        st.metric("Score", round(res.score), border=True)
+        st.metric("Score", f"{round(res.score)}%", border=True)
     with col2:
         st.metric("Interpretation", res.interpretation, border=True)
 
     base = (
             alt.Chart(res.df)
             .encode(
-                y='count()',
-                x='Q1:N'
+                x='count()',
+                y='Q1:N'
             )
     )
 

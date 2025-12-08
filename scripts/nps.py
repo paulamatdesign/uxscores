@@ -49,6 +49,17 @@ class NPS:
         elif x > 50:
             return "Excellent"
         elif x > 80:
-            return "World Class"
+            return "World-Class"
         else:
             return "Unacceptable"
+        
+def slider_nps(score, interpretation):
+    with open("assets/slider-nps.svg", "r") as f:
+        svg = f.read()
+    svg = svg.replace("*sc*", f"{str(score)}%")
+    svg = svg.replace('width="822"', 'width=100%')
+    css1 = f"<style>[id^='bubble-'] {{opacity: 0;}} [id^='frame-'] {{opacity: 0.5;}}</style>"
+    css2 = f"<style>#bubble-{interpretation}, #frame-{interpretation} {{opacity: 1 !important;}}</style>"
+    html = css1 + css2 + svg
+    # Streamlit doesn't render raw SVG directly, so wrap it in HTML
+    st.markdown(f"<div style='max-width: 100%;'>{html}</div>", unsafe_allow_html=True)
