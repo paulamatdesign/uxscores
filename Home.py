@@ -46,7 +46,7 @@ st.caption(
 
 df = pd.read_csv("assets/questionnaires.csv", sep=";")
 
-df["Length"] = ["Short" if int(x) <= 10 else "Long" for x in df["Items"]]
+df["Short"] = [True if int(x) <= 10 else False for x in df["Items"]]
 
 col1, col2 = st.columns([4, 8], gap="large")
 
@@ -55,11 +55,6 @@ with col1:
     selection = st.selectbox("Scope", options)
     if selection != "All":
         df = df[df["Scope"] == selection]
-
-    options = ["All"] + df["Length"].unique().tolist()
-    selection = st.selectbox("Length", options)
-    if selection != "All":
-        df = df[df["Length"] == selection]
 
     options = ["All"] + df["Measures"].unique().tolist()
     selection = st.selectbox("Measures", options)
@@ -70,6 +65,11 @@ with col1:
     selection = st.selectbox("Sub-constructs", options)
     if selection != "All":
         df = df[df["Sub_constructs"] == selection]
+
+    options = ["True", "False"]
+    selection = st.toggle("Short only", False)
+    if selection:
+        df = df[df["Short"] == True]
 
     options = ["True", "False"]
     selection = st.toggle("Free only", False)
