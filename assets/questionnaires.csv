@@ -62,20 +62,20 @@ WEBQUAL;36;Quality;Website;Relative advantage;Loiacono et al. (2002);;;False
 UEQ-S;8;Usability;;Pragmatic quality;Laugwitz et al. (2008);;True;True
 UEQ-S;8;Usability;;Hedonic quality;Laugwitz et al. (2008);http://mecue.de/english/index.html ;True;True
 ASQ;3;;;;Lewis (1995);;;False
-CSUQ;19;;System;System usefulness;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;;False
-CSUQ;19;;System;Information quality;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;;False
-CSUQ;19;;System;Interface quality;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;;False
-CSUQ;19;;System;Overall satisfaction;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;;False
-CSUQ-Short;16;;;System usefulness;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;;False
-CSUQ-Short;16;;;Information quality;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;;False
-CSUQ-Short;16;;;Interface quality;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;;False
-CSUQ-Short;16;;;Overall satisfaction;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;;False
-DEEP;19;;Website;Perceived content;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;;False
-DEEP;19;;Website;Perceived structure and information architecture;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;;False
-DEEP;19;;Website;Perceived navigation;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;;False
-DEEP;19;;Website;Perceived cognitive effort;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;;False
-DEEP;19;;Website;Perceived layout consistency;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;;False
-DEEP;19;;Website;Perceived visual guidance;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;;False
+CSUQ;19;;System;System usefulness;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;False
+CSUQ;19;;System;Information quality;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;False
+CSUQ;19;;System;Interface quality;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;False
+CSUQ;19;;System;Overall satisfaction;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;False
+CSUQ-Short;16;;;System usefulness;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;False
+CSUQ-Short;16;;;Information quality;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;False
+CSUQ-Short;16;;;Interface quality;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;False
+CSUQ-Short;16;;;Overall satisfaction;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;False
+DEEP;19;;Website;Perceived content;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;True;False
+DEEP;19;;Website;Perceived structure and information architecture;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;True;False
+DEEP;19;;Website;Perceived navigation;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;True;False
+DEEP;19;;Website;Perceived cognitive effort;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;True;False
+DEEP;19;;Website;Perceived layout consistency;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;True;False
+DEEP;19;;Website;Perceived visual guidance;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;True;False
 SUPR-Q;8;;Website;;Sauro (2015);;;False
 AttrakDiff;28;;;Pragmatic quality;Hassenzahl et al. (2003);http://www.attrakdiff.de;;False
 AttrakDiff;28;;;Hedonic quality – stimulation;Hassenzahl et al. (2003);http://www.attrakdiff.de;;False
