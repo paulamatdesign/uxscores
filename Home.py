@@ -44,7 +44,7 @@ st.caption(
     """
 )
 
-df = pd.read_csv("assets/questionnaires.csv")
+df = pd.read_csv("assets/questionnaires.csv", sep=";")
 
 df["Length"] = ["Short" if int(x) <= 10 else "Long" for x in df["Items"]]
 
