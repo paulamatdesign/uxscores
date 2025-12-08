@@ -85,7 +85,7 @@ if uploaded_file is not None:
     col1, col2 = st.columns(2, gap="medium")
     with col1:
         st.metric("Pragmatic Mean", round(res.mci_pragmatic[0], 1), border=True)
-        st.write(f"Predicted Mean & CI (95%): {round(res.mci_pragmatic[0], 1)} [{round(res.mci_pragmatic[1], 1)};{round(res.mci_pragmatic[2], 1)}]")
+        st.write(f"Mean & CI (95%): {round(res.mci_pragmatic[0], 1)} [{round(res.mci_pragmatic[1], 1)};{round(res.mci_pragmatic[2], 1)}]")
     with col2:
         bar_chart = alt.Chart(res.df).mark_bar().encode(
             alt.X("UserScore_Pragmatic:Q").bin(maxbins=20).scale(domain=[-3, 3]),
@@ -108,7 +108,7 @@ if uploaded_file is not None:
             )
         )
 
-        plot = (bar_chart + mean_line + mean_text).properties(title="Predicted SUS Scores Distribution & Mean")
+        plot = (bar_chart + mean_line + mean_text).properties(title="Scores Distribution & Mean")
 
         st.altair_chart(plot)
 
@@ -117,7 +117,7 @@ if uploaded_file is not None:
     col1, col2 = st.columns(2, gap="medium")
     with col1:
         st.metric("Hedonic Mean", round(res.mci_hedonic[0], 1), border=True)
-        st.write(f"Predicted Mean & CI (95%): {round(res.mci_hedonic[0], 1)} [{round(res.mci_hedonic[1], 1)};{round(res.mci_hedonic[2], 1)}]")
+        st.write(f"Mean & CI (95%): {round(res.mci_hedonic[0], 1)} [{round(res.mci_hedonic[1], 1)};{round(res.mci_hedonic[2], 1)}]")
     with col2:
         bar_chart = alt.Chart(res.df).mark_bar().encode(
             alt.X("UserScore_Hedonic:Q").bin(maxbins=20).scale(domain=[-3, 3]),
@@ -140,7 +140,7 @@ if uploaded_file is not None:
             )
         )
 
-        plot = (bar_chart + mean_line + mean_text).properties(title="Predicted SUS Scores Distribution & Mean")
+        plot = (bar_chart + mean_line + mean_text).properties(title="Scores Distribution & Mean")
 
         st.altair_chart(plot)
 

@@ -87,7 +87,7 @@ with col2:
                 h = ""
             else:
                 d = True
-                h = "Coming soon..."
+                h = "Not available..."
             if st.button(name, width="stretch", disabled=d, help=h, type="primary"):
                 st.switch_page(f"pages/{name}.py")
 
