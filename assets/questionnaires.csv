@@ -81,4 +81,8 @@ AttrakDiff;28;;;Pragmatic quality;Hassenzahl et al. (2003);http://www.attrakdiff
 AttrakDiff;28;;;Hedonic quality – stimulation;Hassenzahl et al. (2003);http://www.attrakdiff.de;;False
 AttrakDiff;28;;;Hedonic quality – identity;Hassenzahl et al. (2003);http://www.attrakdiff.de;;False
 AttrakDiff;28;;;Overall quality;Hassenzahl et al. (2003);http://www.attrakdiff.de;;False
-meCUE;34;;;;Minge et al. (2013);http://www.ueq-online.org ;;False
+meCUE;34;;;Perception of instrumental qualities ;Minge et al. (2013);https://mecue.de/english/index.html ;True;False
+meCUE;34;;;Perception of non-instrumental qualities;Minge et al. (2013);https://mecue.de/english/index.html ;True;False
+meCUE;34;;;User emotions;Minge et al. (2013);https://mecue.de/english/index.html ;True;False
+meCUE;34;;;Consequences of use;Minge et al. (2013);https://mecue.de/english/index.html ;True;False
+meCUE;34;;;Overall evaluation;Minge et al. (2013);https://mecue.de/english/index.html ;True;False
