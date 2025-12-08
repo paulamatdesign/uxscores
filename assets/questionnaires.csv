@@ -44,7 +44,7 @@ ACSI,14,Satisfaction,Customer,Loyalty,theacsi.org,,False
 CXi,3,Experience,Customer,Usefulness,forrester.com,,False
 CXi,3,Experience,Customer,Usability,forrester.com,,False
 CXi,3,Experience,Customer,Enjoyability,forrester.com,,False
-NPS,1,Loyalty,Customer,Customer loyalty,Reichheld (2003),,False
+NPS,1,Loyalty,Customer,Customer loyalty,Reichheld (2003),,True
 TAM,12,Acceptance,Technology,Usefulness,Davis (1989),,False
 TAM,12,Acceptance,Technology,Ease of use,Davis (1989),,False
 WEBQUAL,36,Quality,Website,Informational fit to task,Loiacono et al. (2002),,False

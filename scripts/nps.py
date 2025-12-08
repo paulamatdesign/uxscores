@@ -1,15 +1,15 @@
 from scripts.utils import *
 import pandas as pd
 
-class nps:
+class NPS:
     def __init__(self, raw):
         self.raw = raw
         self.df = self.processed(raw)
-        self.mci = mci(self.df['Q1'])
-        self.mci_grade = [sus_as_grade(x) for x in self.mci]
-        self.mci_acceptability = [sus_as_acceptability(x) for x in self.mci]
-        self.mci_learnability = mci(self.df['Learnability'])
-        self.mci_usability = mci(self.df['Usability'])
+        self.prop_detractors = self.prop_group("Detractors")
+        self.prop_passives = self.prop_group("Passives")
+        self.prop_promoters = self.prop_group("Promoters")
+        self.score = 100 * (self.prop_promoters - self.prop_detractors)
+        self.interpretation = self.interpret(self.score)
 
     def processed(self, df):
         to_remove = [col for col in df.columns if not col.startswith("Q")]
@@ -23,24 +23,32 @@ class nps:
         n = len(df)
         if n < 2:
             raise ValueError("The uploaded file must contain responses from at least 2 users.")
+        
+        def nps_as_group(x):
+            x = int(x)
+            if x <= 6:
+                return "Detractors"
+            elif x <= 8:
+                return "Passives"
+            else:
+                return "Promoters"
 
-        # Apply SUS scoring rules
-        for col in df.columns:
-            if col in ["Q1", "Q3", "Q5", "Q7", "Q9"]:
-                # Odd-numbered items
-                df[col] = df[col] - 1
-            elif col in ["Q2", "Q4", "Q6", "Q8", "Q10"]:
-                # Even-numbered items
-                df[col] = 5 - df[col]
-
-        # Sum across the 10 items
-        df["UserScore"] = df.sum(axis=1) * 2.5
-
-        df['Grade'] = df['UserScore'].apply(sus_as_grade)
-
-        df['Acceptability'] = df['UserScore'].apply(sus_as_acceptability)
-
-        df["Learnability"] = df.filter(["Q4", "Q10"]).sum(axis=1) * (100/(2*4))
-        df["Usability"] = df.filter(["Q1", "Q2", "Q3", "Q5", "Q6", "Q7", "Q8", "Q9"]).sum(axis=1) * (100/(8*4))
+        df['Group'] = df['Q1'].apply(nps_as_group)
 
         return df
+    
+    def prop_group(self, group):
+        filtered = self.df[self.df["Group"] == group]
+        return len(filtered) / len(self.df)
+
+    def interpret(self, x):
+        if x > 0:
+            return "Good"
+        elif x > 20:
+            return "Favourable"
+        elif x > 50:
+            return "Excellent"
+        elif x > 80:
+            return "World Class"
+        else:
+            return "Unacceptable"

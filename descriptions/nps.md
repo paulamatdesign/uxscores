@@ -14,6 +14,8 @@ Include the attribution language below in a footnote at the bottom of any page t
 
 ## How to calculate NPS
 
+From: [https://www.netpromotersystem.com/about/measuring-your-net-promoter-score/](https://www.netpromotersystem.com/about/measuring-your-net-promoter-score/)
+
 To calculate your Net Promoter Score (NPS):
 
 Categorize each respondent based on their score, count how many fall into each category:
@@ -27,3 +29,16 @@ Then calculate the percentage of Promoters and Detractors by dividing each count
 Finally, subtract the percentage of Promoters from the percentage of Detractors using the formula:
 
 NPS = % Promoters − % Detractors.
+
+The NPS score is a percentage that ranges between -100 and 100.
+
+## Interpretation
+
+From: [https://www.qualtrics.com/en-gb/experience-management/customer/good-net-promoter-score/?utm_source=chatgpt.com](https://www.qualtrics.com/en-gb/experience-management/customer/good-net-promoter-score/?utm_source=chatgpt.com)
+
+Creators of NPS, Bain & Company, suggest a score:
+
+- Above 0 is good,
+- Above 20 is favourable,
+- Above 50 is excellent, and
+- Above 80 is world class.
