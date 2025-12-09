@@ -55,6 +55,8 @@ if uploaded_file is not None:
         st.write(f"Mean & CI (95%): {round(res.mci[0])} [{round(res.mci[1])};{round(res.mci[2])}]")
     with col2:
         pass
+
+
     bar_chart = alt.Chart(res.df).mark_bar().encode(
         alt.X("UserScore:Q").bin(maxbins=20).scale(domain=[0, 100]),
         alt.Y('count()', axis=alt.Axis(tickMinStep=1, format='d')),
@@ -79,6 +81,8 @@ if uploaded_file is not None:
     plot = (bar_chart + mean_line + mean_text).properties(title="User Scores Distribution & Mean")
 
     st.altair_chart(plot)
+
+    ut.plot_save_info()
 
     st.header("Grade")
     col1, col2 = st.columns(2, gap="medium")

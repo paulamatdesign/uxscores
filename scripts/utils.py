@@ -123,3 +123,6 @@ def slider_ueqs(score):
     html = css1 + css2 + svg
     # Streamlit doesn't render raw SVG directly, so wrap it in HTML
     st.markdown(f"<div style='max-width: 100%;'>{html}</div>", unsafe_allow_html=True)
+
+def plot_save_info():
+    st.info("Quick tip: select the three dots on the up-right corner of a plot to save as PNG or SVG!")

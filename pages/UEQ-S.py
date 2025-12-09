@@ -55,6 +55,7 @@ if uploaded_file is not None:
         st.write(f"Mean & CI (95%): {round(res.mci[0], 1)} [{round(res.mci[1], 1)};{round(res.mci[2], 1)}]")
     with col2:
         pass
+
     bar_chart = alt.Chart(res.df).mark_bar().encode(
         alt.X("UserScore:Q").bin(maxbins=20).scale(domain=[-3, 3]),
         alt.Y('count()'),
@@ -79,6 +80,8 @@ if uploaded_file is not None:
     plot = (bar_chart + mean_line + mean_text).properties(title="User Scores Distribution & Mean")
 
     st.altair_chart(plot)
+
+    ut.plot_save_info()
 
     st.header("Pragmatic Quality")
 

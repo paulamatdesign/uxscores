@@ -79,6 +79,7 @@ if uploaded_file is not None:
 
     st.altair_chart(plot)
 
+    ut.plot_save_info()
 
     st.header("Groups")
     # === 1. Base chart: common encoding ===
@@ -107,4 +108,3 @@ if uploaded_file is not None:
     st.altair_chart(plot)
 
     ut.show_data(df_raw, res.df)
-
