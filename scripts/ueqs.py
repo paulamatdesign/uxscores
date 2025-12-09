@@ -23,7 +23,7 @@ class ueqs:
         
         df = df - 4
         
-        df["UserScore"] = df.mean(axis=1)  
+        df["UserScore"] = df.mean(axis=1)
         df["UserScore_Pragmatic"] = df.filter(["Q1", "Q2", "Q3", "Q4"]).mean(axis=1)
         df["UserScore_Hedonic"] = df.filter(["Q5", "Q6", "Q7", "Q8"]).mean(axis=1)
 

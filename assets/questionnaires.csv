@@ -66,10 +66,10 @@ CSUQ;19;;System;System usefulness;Lewis (1995);http://garyperlman.com/quest/ques
 CSUQ;19;;System;Information quality;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;False
 CSUQ;19;;System;Interface quality;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;False
 CSUQ;19;;System;Overall satisfaction;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;False
-CSUQ-Short;16;;;System usefulness;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;False
-CSUQ-Short;16;;;Information quality;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;False
-CSUQ-Short;16;;;Interface quality;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;False
-CSUQ-Short;16;;;Overall satisfaction;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;False
+CSUQ-Short;16;;;System usefulness;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;True
+CSUQ-Short;16;;;Information quality;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;True
+CSUQ-Short;16;;;Interface quality;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;True
+CSUQ-Short;16;;;Overall satisfaction;Lewis (1995);http://garyperlman.com/quest/quest.cgi?;True;True
 DEEP;19;;Website;Perceived content;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;True;False
 DEEP;19;;Website;Perceived structure and information architecture;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;True;False
 DEEP;19;;Website;Perceived navigation;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;True;False

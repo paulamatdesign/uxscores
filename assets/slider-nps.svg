@@ -3,7 +3,7 @@
 <g id="Frame 1" filter="url(#filter0_d_49_4)">
 <rect x="29.0909" y="87" width="763" height="80" rx="26" fill="white" shape-rendering="crispEdges"/>
 <g id="frame-Unacceptable">
-<rect x="39.0909" y="97" width="142.2" height="60" rx="8" fill="#C4212A"/>
+<path d="M39.0909 113C39.0909 104.163 46.2544 97 55.0909 97H173.291C177.709 97 181.291 100.582 181.291 105V149C181.291 153.418 177.709 157 173.291 157H55.0909C46.2543 157 39.0909 149.837 39.0909 141V113Z" fill="#C4212A"/>
 <text id="label" fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial Rounded MT Bold" font-size="15" letter-spacing="0em"><tspan x="59.4341" y="132.515">Unacceptable</tspan></text>
 </g>
 <g id="frame-Good">
@@ -81,7 +81,7 @@
 <feOffset dy="29.0909"/>
 <feGaussianBlur stdDeviation="14.5455"/>
 <feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0"/>
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_49_4"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_49_4" result="shape"/>
 </filter>
