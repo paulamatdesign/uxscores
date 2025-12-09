@@ -57,7 +57,7 @@ def slider_nps(score, interpretation):
     with open("assets/slider-nps.svg", "r") as f:
         svg = f.read()
     svg = svg.replace("*sc*", f"{str(score)}%")
-    svg = svg.replace('width="822"', 'width=100%')
+    svg = svg.replace('width="809"', 'width=100%')
     css1 = f"<style>[id^='bubble-'] {{opacity: 0;}} [id^='frame-'] {{opacity: 0.5;}}</style>"
     css2 = f"<style>#bubble-{interpretation}, #frame-{interpretation} {{opacity: 1 !important;}}</style>"
     html = css1 + css2 + svg

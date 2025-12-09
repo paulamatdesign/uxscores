@@ -43,9 +43,9 @@ def slider_csuq_short(score, interpretation):
     with open("assets/slider-csuq_short.svg", "r") as f:
         svg = f.read()
     svg = svg.replace("*sc*", f"{str(score)}")
-    svg = svg.replace('width="822"', 'width=100%')
+    svg = svg.replace('width="809"', 'width=100%')
     css1 = f"<style>[id^='bubble-'] {{opacity: 0;}} [id^='frame-'] {{opacity: 0.5;}}</style>"
     css2 = f"<style>#bubble-{interpretation}, #frame-{interpretation} {{opacity: 1 !important;}}</style>"
     html = css1 + css2 + svg
     # Streamlit doesn't render raw SVG directly, so wrap it in HTML
-    st.markdown(f"<div style='max-width: 100%;'>{html}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='max-width: 100% !important;'>{html}</div>", unsafe_allow_html=True)

@@ -105,7 +105,7 @@ def slider_sus(score, acceptability):
     with open("assets/slider-sus.svg", "r") as f:
         svg = f.read()
     svg = svg.replace("*sc*", str(score))
-    svg = svg.replace('width="822"', 'width=100%')
+    svg = svg.replace('width="809"', 'width=100%')
     css1 = f"<style>#Not-Acceptable, #Marginal, #Acceptable {{opacity: 0;}} #frame-Not-Acceptable, #frame-Marginal, #frame-Acceptable {{opacity: 0.5;}}</style>"
     css2 = f"<style>#{acceptability}, #frame-{acceptability} {{opacity: 1 !important;}}</style>"
     html = css1 + css2 + svg
@@ -117,12 +117,12 @@ def slider_ueqs(score):
     with open("assets/slider-ueqs.svg", "r") as f:
         svg = f.read()
     svg = svg.replace("*sc*", str(score))
-    svg = svg.replace('width="822"', 'width=100%')
+    svg = svg.replace('width="805"', 'width=100%')
     css1 = f"<style>#bubble-3, #bubble-2, #bubble-1, #bubble0, #bubble1, #bubble2, #bubble3 {{opacity: 0;}} #frame-3, #frame-2, #frame-1, #frame0, #frame1, #frame2, #frame3 {{opacity: 0.5;}}</style>"
     css2 = f"<style>#bubble{score}, #frame{score} {{opacity: 1 !important;}}</style>"
     html = css1 + css2 + svg
     # Streamlit doesn't render raw SVG directly, so wrap it in HTML
-    st.markdown(f"<div style='max-width: 100%;'>{html}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='max-width: 100% !important;'>{html}</div>", unsafe_allow_html=True)
 
 def plot_save_info():
     st.info("Select the three dots on the up-right corner of a plot to save as PNG or SVG!", icon="💡")
