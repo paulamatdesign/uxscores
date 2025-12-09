@@ -76,10 +76,6 @@ DEEP;19;;Website;Perceived navigation;Yang et al. (2012) ;http://discern.uits.iu
 DEEP;19;;Website;Perceived cognitive effort;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;True;False
 DEEP;19;;Website;Perceived layout consistency;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;True;False
 DEEP;19;;Website;Perceived visual guidance;Yang et al. (2012) ;http://discern.uits.iu.edu:8670/DEEP/deep.html;True;False
-AttrakDiff;28;;;Pragmatic quality;Hassenzahl et al. (2003);http://www.attrakdiff.de;;False
-AttrakDiff;28;;;Hedonic quality – stimulation;Hassenzahl et al. (2003);http://www.attrakdiff.de;;False
-AttrakDiff;28;;;Hedonic quality – identity;Hassenzahl et al. (2003);http://www.attrakdiff.de;;False
-AttrakDiff;28;;;Overall quality;Hassenzahl et al. (2003);http://www.attrakdiff.de;;False
 meCUE;34;;;Perception of instrumental qualities ;Minge et al. (2013);https://mecue.de/english/index.html ;True;False
 meCUE;34;;;Perception of non-instrumental qualities;Minge et al. (2013);https://mecue.de/english/index.html ;True;False
 meCUE;34;;;User emotions;Minge et al. (2013);https://mecue.de/english/index.html ;True;False
