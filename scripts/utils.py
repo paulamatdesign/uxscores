@@ -125,4 +125,4 @@ def slider_ueqs(score):
     st.markdown(f"<div style='max-width: 100%;'>{html}</div>", unsafe_allow_html=True)
 
 def plot_save_info():
-    st.info("Quick tip: select the three dots on the up-right corner of a plot to save as PNG or SVG!")
+    st.info("Select the three dots on the up-right corner of a plot to save as PNG or SVG!", icon="💡")
