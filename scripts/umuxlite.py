@@ -5,6 +5,8 @@ class umuxlite:
         self.raw = raw
         self.df = self.processed(raw)
         self.mci = mci(self.df['UserScore'])
+        self.mci_usability = mci(self.df['Usability'])
+        self.mci_easeofuse = mci(self.df['EaseOfUse'])
         self.mci_sus = mci(self.df["SUS_Predicted"])
         self.mci_sus_grade = [sus_as_grade(x) for x in self.mci_sus]
         self.mci_sus_acceptability = [sus_as_acceptability(x) for x in self.mci_sus]
@@ -29,11 +31,14 @@ class umuxlite:
         # Sum across the 10 items
         df["UserScore"] = (df.sum(axis=1) / 12) * 100
 
+        df["Usability"] = (df["Q1"] / 6) * 100
+        df["EaseOfUse"] = (df["Q2"] / 6) * 100
+
         # Predict SUS Score
         df["SUS_Predicted"] = 0.65 * (df["UserScore"]) + 22.9
 
-        df['Grade'] = df['SUS_Predicted'].apply(sus_as_grade)
+        df['SUS_Grade'] = df['SUS_Predicted'].apply(sus_as_grade)
 
-        df['Acceptability'] = df['SUS_Predicted'].apply(sus_as_acceptability)
+        df['SUS_Acceptability'] = df['SUS_Predicted'].apply(sus_as_acceptability)
 
         return df
