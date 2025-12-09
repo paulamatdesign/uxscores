@@ -56,16 +56,16 @@ if uploaded_file is not None:
         st.metric("Interpretation", res.interpretation, border=True)
 
     base = (
-            alt.Chart(res.df)
-            .encode(
-                x='count()',
-                y='Q1:N'
-            )
+        alt.Chart(res.df)
+        .encode(
+            x=alt.X('count()', axis=alt.Axis(tickMinStep=1, format='d')),
+            y='Q1:O'
+        )
     )
 
     # === 2. Bar chart showing counts per grade ===
     bars = base.mark_bar().encode(
-        alt.Color("Q1:N").scale(scheme="redyellowgreen", reverse=False).legend(None)
+        alt.Color("Q1:O").scale(scheme="redyellowgreen", reverse=False).legend(None)
     )
 
     # === 3. Labels next to the bars ===
@@ -79,12 +79,13 @@ if uploaded_file is not None:
 
     st.altair_chart(plot)
 
+
     st.header("Groups")
     # === 1. Base chart: common encoding ===
     base = (
         alt.Chart(res.df)
         .encode(
-            x='count()',
+            x=alt.X('count()', axis=alt.Axis(tickMinStep=1, format='d')),
             y='Group:N'
         )
     )

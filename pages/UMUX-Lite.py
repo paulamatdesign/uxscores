@@ -58,7 +58,7 @@ if uploaded_file is not None:
         pass
     bar_chart = alt.Chart(res.df).mark_bar().encode(
         alt.X("UserScore:Q").bin(maxbins=20).scale(domain=[0, 100]),
-        alt.Y('count()'),
+        alt.Y('count()', axis=alt.Axis(tickMinStep=1, format='d')),
         alt.Color("UserScore:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
     )
 
@@ -92,7 +92,7 @@ if uploaded_file is not None:
     with col2:
         bar_chart = alt.Chart(res.df).mark_bar().encode(
             alt.X("Usability:Q").bin(maxbins=20).scale(domain=[0, 100]),
-            alt.Y('count()'),
+            alt.Y('count()', axis=alt.Axis(tickMinStep=1, format='d')),
             alt.Color("Usability:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
         )
 
@@ -126,7 +126,7 @@ if uploaded_file is not None:
     with col2:
         bar_chart = alt.Chart(res.df).mark_bar().encode(
             alt.X("EaseOfUse:Q").bin(maxbins=20).scale(domain=[0, 100]),
-            alt.Y('count()'),
+            alt.Y('count()', axis=alt.Axis(tickMinStep=1, format='d')),
             alt.Color("EaseOfUse:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
         )
 
@@ -162,7 +162,7 @@ if uploaded_file is not None:
     with col2:
         bar_chart = alt.Chart(res.df).mark_bar().encode(
             alt.X("SUS_Predicted:Q").bin(maxbins=20).scale(domain=[0, 100]),
-            alt.Y('count()'),
+            alt.Y('count()', axis=alt.Axis(tickMinStep=1, format='d')),
             alt.Color("SUS_Predicted:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
         )
 
