@@ -1,12 +1,8 @@
-# UMUX-Lite
+# Usability Metric for User Experience - Lite (UMUX-Lite)
 
-## About
+## Authors
 
-Name: UMUX-LITE (Usability Metric for User Experience)
-
-Author(s)-Date: Lewis, Utesch & Maher, 2013
-
-Principal article: Lewis, James R. et al. “UMUX-LITE: when there’s no time for the SUS.” Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (2013): n. pag. [https://www.semanticscholar.org/paper/UMUX-LITE%3A-when-there's-no-time-for-the-SUS-Lewis-Utesch/33995b2a7d85d2247ba1cd5ac5777da9248e82e8](https://www.semanticscholar.org/paper/UMUX-LITE%3A-when-there's-no-time-for-the-SUS-Lewis-Utesch/33995b2a7d85d2247ba1cd5ac5777da9248e82e8)
+Lewis, James R. et al. “UMUX-LITE: when there’s no time for the SUS.” Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (2013): n. pag. [https://www.semanticscholar.org/paper/UMUX-LITE%3A-when-there's-no-time-for-the-SUS-Lewis-Utesch/33995b2a7d85d2247ba1cd5ac5777da9248e82e8](https://www.semanticscholar.org/paper/UMUX-LITE%3A-when-there's-no-time-for-the-SUS-Lewis-Utesch/33995b2a7d85d2247ba1cd5ac5777da9248e82e8)
 
 ## Items
 

@@ -1,4 +1,4 @@
-# NPS
+# Net Promoter Score (NPS®)
 
 ## Licence
 

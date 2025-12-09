@@ -1,14 +1,12 @@
 # System Usability Scale (SUS)
 
+## Authors
+
+Brooke, John. (1995). SUS: A quick and dirty usability scale. Usability Eval. Ind.. 189. [https://www.researchgate.net/publication/228593520_SUS_A_quick_and_dirty_usability_scale](https://www.researchgate.net/publication/228593520_SUS_A_quick_and_dirty_usability_scale)
+
 ## About
 
 The System Usability Scale (SUS) is a simple, ten-item scale giving a global view of subjective assessments of usability. It was created by John Brooke in 1986 to be a "quick and dirty", reliable tool for measuring the usability. SUS has become an industry standard, with references in over 1300 articles and publications.
-
-Name: SUS (System Usability Scale)
-
-Author(s)-Date: John Brooke, 1986
-
-Principal article: Brooke, John. (1995). SUS: A quick and dirty usability scale. Usability Eval. Ind.. 189. [https://www.researchgate.net/publication/228593520_SUS_A_quick_and_dirty_usability_scale](https://www.researchgate.net/publication/228593520_SUS_A_quick_and_dirty_usability_scale)
 
 ## Items
 

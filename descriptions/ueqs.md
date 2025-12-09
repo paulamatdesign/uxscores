@@ -1,10 +1,8 @@
-# UEQ-S
+# User Experience Questionnaire - Short (UEQ-S)
 
-Name: UEQ-S (User Experience Questionnaire – Short)
+## Authors
 
-Author(s)-Date: Laugwitz, B., Schrepp, M. & Held, T. - 2008
-
-Principal article: Laugwitz, B., Schrepp, M. & Held, T. (2008). Construction and evaluation of a user experience
+Laugwitz, B., Schrepp, M. & Held, T. (2008). Construction and evaluation of a user experience
 questionnaire. In: Holzinger, A. (Ed.): USAB 2008, LNCS 5298, 63-76. [https://www.researchgate.net/publication/221217803_Construction_and_Evaluation_of_a_User_Experience_Questionnaire](https://www.researchgate.net/publication/221217803_Construction_and_Evaluation_of_a_User_Experience_Questionnaire)
 
 ## Items

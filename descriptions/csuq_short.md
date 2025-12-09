@@ -1,4 +1,4 @@
-# csuq_short
+# Computer System Usability Questionnaire - Short (CSUQ-Short)
 
 ## Authors
 

@@ -1,14 +1,8 @@
-# UMUX
+# Usability Metric for User Experience (UMUX)
 
-## About
+## Authors
 
-Name: UMUX (Usability Metric for User Experience)
-
-Author(s)-Date: Kraig Finstad, 2010
-
-Licence: No license involved. Free to use (Kraig Finstad, email from April 2023)
-
-Principal article: Finstad, Kraig. (2010). The Usability Metric for User Experience. Interacting with Computers. 22. 323-327. 10.1016/j.intcom.2010.04.004. [https://www.researchgate.net/publication/220054775_The_Usability_Metric_for_User_Experience](https://www.researchgate.net/publication/220054775_The_Usability_Metric_for_User_Experience)
+Finstad, Kraig. (2010). The Usability Metric for User Experience. Interacting with Computers. 22. 323-327. 10.1016/j.intcom.2010.04.004. [https://www.researchgate.net/publication/220054775_The_Usability_Metric_for_User_Experience](https://www.researchgate.net/publication/220054775_The_Usability_Metric_for_User_Experience)
 
 ## Items
 
