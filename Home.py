@@ -19,30 +19,29 @@ h1, h2 {
 
 st.set_page_config("UX Scores", initial_sidebar_state="collapsed")
 
-st.title("UX Scores")
+col1, col2 = st.columns([11, 1])
+with col1:
+    st.title("UX Scores")
+with col2:
+    @st.dialog("About this app")
+    def about():
+        # Read the markdown file
+        with open(f"README.md", "r", encoding="utf-8") as f:
+            md_text = f.read()
+        # Display it in Streamlit
+        st.markdown(md_text)
+    if st.button("", icon=":material/info:", type="tertiary", help="About"):
+        about()
 
-st.write(
-    """
-    Welcome! Select a questionnaire to start calculating UX scores. All data stays in-app and is never stored, logged, or sent to third parties.
-    """
-)
-
-@st.dialog("About this app")
-def about():
-    # Read the markdown file
-    with open(f"README.md", "r", encoding="utf-8") as f:
-        md_text = f.read()
-    # Display it in Streamlit
-    st.markdown(md_text)
-
-if st.button("More infos", icon=":material/info:", type="tertiary"):
-    about()    
+st.write("Welcome! Select a questionnaire to start calculating UX scores.")
 
 st.caption(
     """
-    Made by [Paul AMAT](https://paulamatdesign.github.io/).
+        Made by [Paul AMAT](https://paulamatdesign.github.io/). All data stays in-app and is never stored, logged, or sent to third parties.
     """
 )
+
+st.space()
 
 df = pd.read_csv("assets/questionnaires.csv", sep=";")
 
