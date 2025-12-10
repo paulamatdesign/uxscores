@@ -4,6 +4,10 @@
 
 Lewis, James R. et al. “UMUX-LITE: when there’s no time for the SUS.” Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (2013): n. pag. [https://www.semanticscholar.org/paper/UMUX-LITE%3A-when-there's-no-time-for-the-SUS-Lewis-Utesch/33995b2a7d85d2247ba1cd5ac5777da9248e82e8](https://www.semanticscholar.org/paper/UMUX-LITE%3A-when-there's-no-time-for-the-SUS-Lewis-Utesch/33995b2a7d85d2247ba1cd5ac5777da9248e82e8)
 
+## Permissions From Original Authors
+
+- UMUX-Lite: Permission granted by James Lewis by email (December 3, 2025).
+
 ## Items
 
 5 or 7-points Likert scales, Disagree-Agree:

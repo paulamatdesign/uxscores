@@ -8,7 +8,7 @@ Lewis, James & R., James. (1995). IBM Computer Usability Satisfaction Questionna
 
 From: [https://measuringu.com/pssuq/](https://measuringu.com/pssuq/)
 
-Researchers should consider using the PSSUQ/CSUQ when they want a license-free, general measure of perceived usability with known benchmarks.
+*Researchers should consider using the PSSUQ/CSUQ when they want a license-free, general measure of perceived usability with known benchmarks.*
 
 ## Items
 

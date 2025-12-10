@@ -81,3 +81,6 @@ meCUE;34;;;Perception of non-instrumental qualities;Minge et al. (2013);https://
 meCUE;34;;;User emotions;Minge et al. (2013);https://mecue.de/english/index.html ;True;False
 meCUE;34;;;Consequences of use;Minge et al. (2013);https://mecue.de/english/index.html ;True;False
 meCUE;34;;;Overall evaluation;Minge et al. (2013);https://mecue.de/english/index.html ;True;False
+SUPR-Q;8;;Website;Usability;Sauro (2015);https://uxpajournal.org/supr-q-a-comprehensive-measure-of-the-quality-of-the-website-user-experience/;True;True
+SUPR-Q;8;;Website;Trust;Sauro (2015);https://uxpajournal.org/supr-q-a-comprehensive-measure-of-the-quality-of-the-website-user-experience/;True;True
+SUPR-Q;8;;Website;Loyalty;Sauro (2015);https://uxpajournal.org/supr-q-a-comprehensive-measure-of-the-quality-of-the-website-user-experience/;True;True

@@ -5,6 +5,10 @@
 Laugwitz, B., Schrepp, M. & Held, T. (2008). Construction and evaluation of a user experience
 questionnaire. In: Holzinger, A. (Ed.): USAB 2008, LNCS 5298, 63-76. [https://www.researchgate.net/publication/221217803_Construction_and_Evaluation_of_a_User_Experience_Questionnaire](https://www.researchgate.net/publication/221217803_Construction_and_Evaluation_of_a_User_Experience_Questionnaire)
 
+## Permissions From Original Authors
+
+- UEQ-S: Permission granted by Martin Schrepp by email (December 2, 2025).
+
 ## Items
 
 7 points Likert scales. Items represents 2 dimensions.

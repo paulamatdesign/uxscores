@@ -4,6 +4,10 @@
 
 Finstad, Kraig. (2010). The Usability Metric for User Experience. Interacting with Computers. 22. 323-327. 10.1016/j.intcom.2010.04.004. [https://www.researchgate.net/publication/220054775_The_Usability_Metric_for_User_Experience](https://www.researchgate.net/publication/220054775_The_Usability_Metric_for_User_Experience)
 
+## Permissions From Original Authors
+
+- UMUX-Lite: Permission granted by James Lewis by email (December 3, 2025).
+
 ## Items
 
 7-points Likert scales, Strongly disagree - Strongly agree:
