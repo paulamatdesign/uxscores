@@ -158,6 +158,41 @@ if uploaded_file is not None:
 
 
 
+    st.header("Loyalty")
+
+    col1, col2 = st.columns(2, gap="medium")
+    with col1:
+        st.metric("Mean", round(res.mci_loyalty[0], 1), border=True)
+        st.write(f"Mean & CI (95%): {round(res.mci_loyalty[0], 1)} [{round(res.mci_loyalty[1], 1)};{round(res.mci_loyalty[2], 1)}]")
+    with col2:
+
+        bar_chart = alt.Chart(res.df).mark_bar().encode(
+            alt.X("Loyalty:Q").bin(maxbins=20).scale(domain=[1, 5]),
+            alt.Y('count()'),
+            alt.Color("Loyalty:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
+        )
+
+        mean_line = alt.Chart(pd.DataFrame({'mean_score': [res.mci_loyalty[0]]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
+            x='mean_score:Q',
+            tooltip=[alt.Tooltip('mean_score', title=f'Mean Score')]
+        )
+
+        mean_text = (
+            alt.Chart(pd.DataFrame({'mean_score': [res.mci_loyalty[0]]}))
+            .mark_text(align='left', dx=8, color="red")
+            .encode(
+                x='mean_score:Q',
+                y=alt.Y(datum=0.5, type="quantitative"),
+                text=alt.value("MEAN")
+            )
+        )
+
+        plot = (bar_chart + mean_line + mean_text).properties(title="Distribution & Mean")
+
+        st.altair_chart(plot)
+
+
+
 
     st.header("Appearance")
 
@@ -180,43 +215,6 @@ if uploaded_file is not None:
 
         mean_text = (
             alt.Chart(pd.DataFrame({'mean_score': [res.mci_appearance[0]]}))
-            .mark_text(align='left', dx=8, color="red")
-            .encode(
-                x='mean_score:Q',
-                y=alt.Y(datum=0.5, type="quantitative"),
-                text=alt.value("MEAN")
-            )
-        )
-
-        plot = (bar_chart + mean_line + mean_text).properties(title="Distribution & Mean")
-
-        st.altair_chart(plot)
-
-
-
-
-
-    st.header("Loyalty")
-
-    col1, col2 = st.columns(2, gap="medium")
-    with col1:
-        st.metric("Mean", round(res.mci_loyalty[0], 1), border=True)
-        st.write(f"Mean & CI (95%): {round(res.mci_loyalty[0], 1)} [{round(res.mci_loyalty[1], 1)};{round(res.mci_loyalty[2], 1)}]")
-    with col2:
-
-        bar_chart = alt.Chart(res.df).mark_bar().encode(
-            alt.X("Loyalty:Q").bin(maxbins=20).scale(domain=[1, 5]),
-            alt.Y('count()'),
-            alt.Color("Loyalty:Q").bin(maxbins=20).scale(scheme="redyellowgreen").legend(None)
-        )
-
-        mean_line = alt.Chart(pd.DataFrame({'mean_score': [res.mci_loyalty[0]]})).mark_rule(color='red', size=2, strokeDash=[3, 3]).encode(
-            x='mean_score:Q',
-            tooltip=[alt.Tooltip('mean_score', title=f'Mean Score')]
-        )
-
-        mean_text = (
-            alt.Chart(pd.DataFrame({'mean_score': [res.mci_loyalty[0]]}))
             .mark_text(align='left', dx=8, color="red")
             .encode(
                 x='mean_score:Q',
