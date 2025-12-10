@@ -236,7 +236,7 @@ if uploaded_file is not None:
 
     st.write(
         """
-            It is recommended to purchase a MeasuringU license in order to obtain your SUPR-Q percentile and benchmark it against hundreds of websites and organizations across multiple sectors.
+            It is recommended to purchase a [MeasuringU license](https://measuringu.com/product/suprq/) in order to obtain your SUPR-Q percentile and benchmark it against hundreds of websites and organizations across multiple sectors.
         """
     )
 
