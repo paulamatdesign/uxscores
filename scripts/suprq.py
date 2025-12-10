@@ -23,19 +23,19 @@ class SUPRQ:
         if n < 2:
             raise ValueError("The uploaded file must contain responses from at least 2 users.")
         
-        df["Q8_halved"] = df["Q8"] * 0.5
+        df["Q5_halved"] = df["Q5"] * 0.5
         
         def scoring(row):
-            score = (row["Q1":"Q7"].sum() + row["Q8_halved"]) / 8
+            score = (row[["Q1", "Q2", "Q3", "Q4", "Q5_halved", "Q6", "Q7", "Q8"]].sum()) / 8
             return score
 
         df["UserScore"] = df.apply(scoring, axis=1)
 
         df["Usability"] = df[["Q1", "Q2"]].mean(axis=1)
         df["Credibility"] = df[["Q3", "Q4"]].mean(axis=1)
-        df["Appearance"] = df[["Q5", "Q6"]].mean(axis=1)
-        df["Loyalty"] = df[["Q7", "Q8_halved"]].mean(axis=1)
-
+        df["Loyalty"] = df[["Q5_halved", "Q6"]].mean(axis=1)
+        df["Appearance"] = df[["Q7", "Q8"]].mean(axis=1)
+        
         return df
 
 def slider_suprq(score, score_class):

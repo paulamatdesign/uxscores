@@ -241,7 +241,7 @@ if uploaded_file is not None:
     )
 
     df_nps = pd.DataFrame()
-    df_nps["Q1"] = df_raw["Q8"]
+    df_nps["Q1"] = df_raw["Q5"]
     res_nps = nps.NPS(df_nps)
 
     st.header("NPS")

@@ -25,18 +25,27 @@ As cited in: [https://measuringu.com/product/suprq/](https://measuringu.com/prod
 
 Scales from 1 to 5 (Strongly Disagree - Strongly Agree):
 
-- This website is easy to use. (Usability)
-- It is easy to navigate within the website. (Usability)
-- The information on the website is credible. (Credibility)
-- The information on the website is trustworthy. (Credibility)
-- I found the website to be attractive. (Appearance)
-- The website has a clean and simple presentation. (Appearance)
-- I will likely visit this website in the future. (Loyalty)
-- How likely are you to recommend this website to a friend or colleague? (Loyalty)
+Usability:
 
-Finale question, scales from 0 to 10 (Not at all Likely - Neutral - Extremely Likely):
+- This website is easy to use.
+- It is easy to navigate within the website.
+
+Credibility: (Trust, Value & Comfort)
+
+- The information on the website is credible.
+- The information on the website is trustworthy.
+- I feel comfortable purchasing from this website. (Alternate for eCommerce websites)
+- I feel confident conducting business with this website. (Alternate eCommerce websites)
+
+Loyalty:
 
 - How likely are you to recommend this website to a friend or colleague?
+- I will likely visit this website in the future.
+
+Appearance:
+
+- I found the website to be attractive.
+- The website has a clean and simple presentation.
 
 ## Alternate for eCommerce websites
 
