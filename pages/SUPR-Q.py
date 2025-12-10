@@ -232,11 +232,7 @@ if uploaded_file is not None:
 
     st.header("Interpretation")
 
-    st.write(
-        """
-            It is recommended to purchase a [MeasuringU license](https://measuringu.com/product/suprq/) in order to obtain your SUPR-Q percentile and benchmark it against hundreds of websites and organizations across multiple sectors.
-        """
-    )
+    st.info("It is recommended to purchase a [MeasuringU license](https://measuringu.com/product/suprq/) in order to obtain your SUPR-Q percentile and benchmark it against hundreds of websites and organizations across multiple sectors.")
 
     df_nps = pd.DataFrame()
     df_nps["Q1"] = df_raw["Q5"]
