@@ -35,6 +35,15 @@ def intro(questionnaire=str, description=str):
         text-transform: uppercase;
         letter-spacing: normal !important;
     }
+                
+    .caption-important {
+        font-size: small;
+        background-color: cornflowerblue;
+        padding: 0.4em 1.2em;
+        border-radius: 200px;
+        color: black;
+        width: fit-content;
+    }
     </style>
     """, unsafe_allow_html=True)
     if st.button("Home", icon=":material/arrow_back:", type="tertiary"):
@@ -45,6 +54,9 @@ def intro(questionnaire=str, description=str):
     with col2:
         if st.button("", icon=":material/info:", type="tertiary", help="About"):
             open_help(description)
+
+def caption_important(text):
+    return st.html(f"<div class='caption-important'>{text}</div>")
 
 def mci(x):
     mean = x.mean()
@@ -125,4 +137,4 @@ def slider_ueqs(score):
     st.markdown(f"<div style='max-width: 100% !important;'>{html}</div>", unsafe_allow_html=True)
 
 def plot_save_info():
-    st.info("Select the three dots on the up-right corner of a plot to save as PNG or SVG!", icon="💡")
+    caption_important("Select the three dots on the up-right corner of a plot to save as PNG or SVG!")

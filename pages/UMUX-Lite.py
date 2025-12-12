@@ -32,7 +32,8 @@ st.download_button(
 
 st.header("2. Drop your Excel file")
 uploaded_file = st.file_uploader("Choisir un fichier Excel", type=["xlsx", "xls"], label_visibility="collapsed")
-st.caption("Only 7-point scales are supported.")
+
+ut.caption_important("Only 7-points scales are supported.")
 
 if st.button("Show an exemple", type="tertiary"):
     uploaded_file = template_path
