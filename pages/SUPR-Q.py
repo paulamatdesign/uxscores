@@ -10,11 +10,7 @@ from scripts import utils as ut
 
 ut.intro("SUPR-Q", "suprq")
 
-st.caption(
-    """
-    Sauro, 2015. SUPR-Q: A Comprehensive Measure of the Quality of the Website User Experience - JUX. JUX - The Journal of User Experience. [https://uxpajournal.org/supr-q-a-comprehensive-measure-of-the-quality-of-the-website-user-experience/](https://uxpajournal.org/supr-q-a-comprehensive-measure-of-the-quality-of-the-website-user-experience/)
-    """
-)
+st.caption("From: Sauro (2015).")
 
 st.header("1. Downlad and fill the template")
 
@@ -232,7 +228,7 @@ if uploaded_file is not None:
 
     st.header("Interpretation")
 
-    st.info("It is recommended to purchase a [MeasuringU license](https://measuringu.com/product/suprq/) in order to obtain your SUPR-Q percentile and benchmark it against hundreds of websites and organizations across multiple sectors.")
+    ut.caption_important("It is recommended to purchase a MeasuringU license (https://measuringu.com/product/suprq/) in order to obtain your SUPR-Q percentile and benchmark it against hundreds of websites and organizations across multiple sectors.")
 
     df_nps = pd.DataFrame()
     df_nps["Q1"] = df_raw["Q5"]

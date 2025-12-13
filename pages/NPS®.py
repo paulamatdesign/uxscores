@@ -9,11 +9,7 @@ from scripts import utils as ut
 
 ut.intro("NPS®", "nps")
 
-st.caption(
-    """
-    Net Promoter®, NPS®, NPS Prism®, and the NPS-related emoticons are registered trademarks of Bain & Company, Inc., NICE Systems, Inc., and Fred Reichheld. Net Promoter ScoreSM and Net Promoter SystemSM are service marks of Bain & Company, Inc., NICE Systems, Inc., and Fred Reichheld.
-    """
-)
+st.caption("NPS® is registered trademarks of Bain & Company, Inc., NICE Systems, Inc., and Fred Reichheld.")
 
 st.header("1. Downlad and fill the template")
 

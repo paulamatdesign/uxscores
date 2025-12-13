@@ -9,11 +9,7 @@ from scripts import utils as ut
 
 ut.intro("SUS", "sus")
 
-st.caption(
-    """
-    From: Brooke, John. (1995). SUS: A quick and dirty usability scale. Usability Eval. Ind.. 189. [Article link](https://www.researchgate.net/publication/228593520_SUS_A_quick_and_dirty_usability_scale)
-    """
-)
+st.caption("From: Brooke (1995).")
 
 st.header("1. Downlad and fill the template")
 

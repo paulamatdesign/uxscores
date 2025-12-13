@@ -9,11 +9,7 @@ from scripts import utils as ut
 
 ut.intro("UEQ-S", "ueqs")
 
-st.caption(
-    """
-    From: Laugwitz, B., Schrepp, M. & Held, T. (2008). Construction and evaluation of a user experience questionnaire. In: Holzinger, A. (Ed.): USAB 2008, LNCS 5298, 63-76. [Article link](https://www.researchgate.net/publication/221217803_Construction_and_Evaluation_of_a_User_Experience_Questionnaire)
-    """
-)
+st.caption("From: Laugwitz *et al.* (2008).")
 
 st.header("1. Downlad and fill the template")
 

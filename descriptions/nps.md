@@ -1,5 +1,11 @@
 # Net Promoter Score (NPS®)
 
+## Authors
+
+Net Promoter®, NPS®, NPS Prism®, and the NPS-related emoticons are registered trademarks of Bain & Company, Inc., NICE Systems, Inc., and Fred Reichheld.
+
+Net Promoter ScoreSM and Net Promoter SystemSM are service marks of Bain & Company, Inc., NICE Systems, Inc., and Fred Reichheld.
+
 ## Licence
 
 A found in [https://www.netpromotersystem.com/resources/trademarks-and-licensing/](https://www.netpromotersystem.com/resources/trademarks-and-licensing/):
