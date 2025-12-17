@@ -10,7 +10,7 @@ from scripts import utils as ut
 
 ut.intro("SUPR-Q", "suprq")
 
-st.caption("From: Sauro (2015).")
+st.caption("From: Sauro, 2015. SUPR-Q: A Comprehensive Measure of the Quality of the Website User Experience - JUX. JUX - The Journal of User Experience.")
 
 st.header("1. Downlad and fill the template")
 

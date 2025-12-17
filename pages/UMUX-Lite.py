@@ -9,7 +9,7 @@ from scripts import utils as ut
 
 ut.intro("UMUX-Lite", "umux_lite")
 
-st.caption("From: Lewis *et al.* (2013).")
+st.caption("From: Lewis, James R. et al. “UMUX-LITE: when there’s no time for the SUS.” Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (2013)")
 
 st.header("1. Downlad and fill the template")
 

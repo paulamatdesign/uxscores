@@ -9,7 +9,7 @@ from scripts import utils as ut
 
 ut.intro("CSUQ-Short", "csuq_short")
 
-st.caption("From: Lewis *et al.* (1995).")
+st.caption("From: Lewis, James & R., James. (1995). IBM Computer Usability Satisfaction Questionnaires: Psychometric Evaluation and Instructions for Use. International Journal of Human-Computer Interaction. 7. 57-. 10.1080/10447319509526110.")
 
 st.header("1. Downlad and fill the template")
 

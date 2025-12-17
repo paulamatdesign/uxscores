@@ -9,7 +9,7 @@ from scripts import utils as ut
 
 ut.intro("NASA-TLX", "nasa_tlx")
 
-st.caption("From: Hart *et al.* (1988).")
+st.caption("From: Hart, S. G., & Staveland, L. E. (1988). Development of NASA-TLX (Task Load Index): Results of empirical and theoretical research. In Advances in psychology (pp. 139–183).")
 
 st.header("1. Downlad and fill the template")
 
