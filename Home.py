@@ -37,7 +37,7 @@ st.write("Welcome! Select a questionnaire to start calculating UX scores.")
 
 st.caption(
     """
-        Made by [Paul AMAT](https://paulamatdesign.github.io/). All data stays in-app and is never stored, logged, or sent to third parties.
+        Made by [Paul AMAT](https://paulamatdesign.github.io/). Your data is never stored or sent.
     """
 )
 
